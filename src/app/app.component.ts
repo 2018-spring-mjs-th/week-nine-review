@@ -40,4 +40,8 @@ export class AppComponent {
   makeQuizSelected(q) {
     this.selectedQuiz = q;
   }
+
+  addQuiz() {
+    this.quizzes.push({ name: "New Untitled Quiz", numberQuestions: 0})
+  }
 }
