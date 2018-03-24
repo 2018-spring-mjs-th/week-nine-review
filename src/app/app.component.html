@@ -9,17 +9,20 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-4">
-      <h2>Quiz List</h2>
-
-      <div class="list-group">
-        <div *ngFor="let q of quizzes" class="list-group-item">
-          {{ q.name }} 
+      <span class="badge badge-secondary">OVERVIEW</span>
+      <br>
+      <br>
+      <ul class="list-group">
+        <li *ngFor="let q of quizzes" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+          {{ q.name }}
           <span class="badge badge-secondary" [class.bg-danger]="q.numberQuestions == 0" >{{ q.numberQuestions }}</span>
-        </div>
-      </div>
+        </li>
+      </ul>
     </div>
     <div class="col-sm-8">
-      Foo
+      <span class="badge badge-secondary">DETAILS</span>
+      <br>
+      <br>
     </div>
   </div>
 </div>
