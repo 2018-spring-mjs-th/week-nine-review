@@ -9,26 +9,32 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-4">
-      <br>
-      <span class="badge badge-success">1</span> SELECT A QUIZ
-      <br>
-      <br>
-      <br>
+        <span class="badge badge-success">1</span> SELECT A QUIZ
+        <br>
+        <br>
+        <button class="btn btn-outline-success btn-sm" (click)="addQuiz()">ADD A NEW QUIZ</button>
+        <br>
+        <br>
+      </div>
+    <div class="col-sm-8">
+        <span class="badge badge-success">2</span> EDIT THE SELECTED QUIZ
+        <br>
+        <br>
+        <button class="btn btn-outline-success btn-sm">SAVE CHANGES</button>
+        <button class="btn btn-link btn-sm">CANCEL CHANGES</button>
+        
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-4">
       <ul class="list-group">
-        <li *ngFor="let q of quizzes" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" (click)="makeQuizSelected(q)">
+        <li *ngFor="let q of quizzes" [class.active]="q === selectedQuiz" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" (click)="makeQuizSelected(q)">
           {{ q.name }}
           <span class="badge badge-secondary" [class.bg-danger]="q.numberQuestions == 0" >{{ q.numberQuestions }}</span>
         </li>
       </ul>
-      <br>
-      <button class="btn btn-outline-success btn-sm" (click)="addQuiz()">ADD A NEW QUIZ</button>
     </div>
     <div class="col-sm-8">
-      <br>
-      <span class="badge badge-success">2</span> EDIT THE SELECTED QUIZ
-      <br>
-      <br>
-      <br>
       {{ selectedQuiz.name }}
     </div>
   </div>
