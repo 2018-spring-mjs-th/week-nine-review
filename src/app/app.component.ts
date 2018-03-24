@@ -34,4 +34,10 @@ export class AppComponent {
   ngOnInit() {
     this.quizzes = this.quizSvc.getQuizzes();
   }
+
+  selectedQuiz;
+
+  makeQuizSelected(q) {
+    this.selectedQuiz = q;
+  }
 }

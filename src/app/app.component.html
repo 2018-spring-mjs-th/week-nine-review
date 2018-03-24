@@ -13,7 +13,7 @@
       <br>
       <br>
       <ul class="list-group">
-        <li *ngFor="let q of quizzes" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+        <li *ngFor="let q of quizzes" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" (click)="makeQuizSelected(q)">
           {{ q.name }}
           <span class="badge badge-secondary" [class.bg-danger]="q.numberQuestions == 0" >{{ q.numberQuestions }}</span>
         </li>
@@ -23,6 +23,7 @@
       <span class="badge badge-secondary">DETAILS</span>
       <br>
       <br>
+      {{ selectedQuiz.name }}
     </div>
   </div>
 </div>
