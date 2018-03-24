@@ -35,7 +35,7 @@ export class AppComponent {
     this.quizzes = this.quizSvc.getQuizzes();
   }
 
-  selectedQuiz;
+  selectedQuiz = { name: "No quiz selected" };
 
   makeQuizSelected(q) {
     this.selectedQuiz = q;
