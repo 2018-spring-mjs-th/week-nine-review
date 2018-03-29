@@ -34,4 +34,16 @@ export class AppComponent {
   ngOnInit() {
     this.quizzes = this.quizSvc.getQuizzes();
   }
+
+  selectedQuiz = { name: "No quiz selected" };
+
+  makeQuizSelected(q) {
+    this.selectedQuiz = q;
+  }
+
+  addQuiz() {
+    let newQuiz = { name: "New Untitled Quiz", numberQuestions: 0};
+    this.quizzes.push(newQuiz);
+    this.selectedQuiz = newQuiz;
+  }
 }
