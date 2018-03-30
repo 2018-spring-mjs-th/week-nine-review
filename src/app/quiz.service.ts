@@ -7,8 +7,8 @@ export class QuizService {
 
   public getQuizzes() {
     return [
-      { name: "Quiz 1", numberQuestions: 10 }
-      , { name: "Quiz 2", numberQuestions: 0 }
+      { name: "Math Quiz", numberQuestions: 10 }
+      , { name: "Java Quiz", numberQuestions: 0 }
     ];
   }
 
