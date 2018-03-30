@@ -34,8 +34,20 @@
         </li>
       </ul>
     </div>
-    <div class="col-sm-8">
-      {{ selectedQuiz.name }}
+    <div class="col-sm-6">
+      <div class="card ">
+        <h5 class="card-header">GENERAL</h5>
+        <div class="card-body">
+          Name
+          <br>
+          <input [(ngModel)]="selectedQuiz.name" type="text" style="width: 80%;"/>
+        </div>
+      </div>
+      <br>
+      <div class="card">
+        <h5 class="card-header">QUESTIONS</h5>
+        <div class="card-body">Coming Soon!</div>
+      </div>
     </div>
   </div>
 </div>
