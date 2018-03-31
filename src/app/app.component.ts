@@ -2,48 +2,54 @@ import { Component } from '@angular/core';
 import { QuizService } from './quiz.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'
-    , '../../node_modules/bootstrap/dist/css/bootstrap.min.css'
-  ]
+	selector: 'app-root',
+	templateUrl: './app.component.html',
+	styleUrls: ['./app.component.css'
+		, '../../node_modules/bootstrap/dist/css/bootstrap.min.css'
+	]
 })
 export class AppComponent {
 
-  title = 'week-nine-review';
+    title = 'week-nine-review';
 
-  color = "silver";
+    color = "silver";
 
-  isDangerous = true;
+    isDangerous = true;
 
-  public toggleDanger() {
-    this.isDangerous = !this.isDangerous;
-  }
+    public toggleDanger() {
+        this.isDangerous = !this.isDangerous;
+    }
 
-  stupid = "Stupid";
+    stupid = "Stupid";
 
-  //quizService: QuizService;
+    //quizService: QuizService;
 
-  // TS automatic properties!!!
-  constructor(private quizSvc: QuizService) {
-    //this.quizService = quizSvc;
-  }
+    // TS automatic properties!!!
+    constructor(private quizSvc: QuizService) {
+        //this.quizService = quizSvc;
+    }
 
-  quizzes = [];
+    quizzes = [];
 
-  ngOnInit() {
-    this.quizzes = this.quizSvc.getQuizzes();
-  }
+    ngOnInit() {
+        this.quizzes = this.quizSvc.getQuizzes();
+    }
 
-  selectedQuiz = { name: "No quiz selected" };
+    selectedQuiz = {
+        name: "No quiz selected"
+    };
 
-  makeQuizSelected(q) {
-    this.selectedQuiz = q;
-  }
+    makeQuizSelected(q) {
+        this.selectedQuiz = q;
+    }
 
-  addQuiz() {
-    let newQuiz = { name: "New Untitled Quiz", numberQuestions: 0};
-    this.quizzes.push(newQuiz);
-    this.selectedQuiz = newQuiz;
-  }
+    addQuiz() {
+        let newQuiz = {
+            name: "New Untitled Quiz",
+            numberQuestions: 0
+        };
+        this.quizzes.push(newQuiz);
+        this.selectedQuiz = newQuiz;
+    }
 }
+
