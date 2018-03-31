@@ -8,14 +8,14 @@ import { QuizService } from './quiz.service';
 
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule
-    , FormsModule
-  ],
-  providers: [ QuizService ],
+	declarations: [
+		AppComponent
+	],
+	imports: [
+		BrowserModule
+		, FormsModule
+	],
+	providers: [ QuizService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

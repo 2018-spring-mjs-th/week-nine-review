@@ -33,14 +33,18 @@ export class AppComponent {
 
     ngOnInit() {
         this.quizzes = this.quizSvc.getQuizzes();
-    }
+	}
+	
+	selectedQuizIndex:number;
 
     selectedQuiz = {
-        name: "No quiz selected"
+        name: "No quiz selected",
+		numberQuestions: "n/a"
     };
 
-    makeQuizSelected(q) {
-        this.selectedQuiz = q;
+    makeQuizSelected(q, selectedQuizIndex) {
+		this.selectedQuiz = q;
+		this.selectedQuizIndex = selectedQuizIndex;
     }
 
     addQuiz() {
@@ -50,6 +54,12 @@ export class AppComponent {
         };
         this.quizzes.push(newQuiz);
         this.selectedQuiz = newQuiz;
-    }
+	}
+	
+	handleSaveSelectedQuiz() {
+		// mutation vs immutability... this is bad?
+		// Actual way to do this is to create a new Quiz array and save the array... the array houses those questions...
+		this.quizzes[this.selectedQuizIndex] = this.selectedQuiz;		
+	}
 }
 
