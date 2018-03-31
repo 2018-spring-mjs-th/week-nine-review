@@ -36,12 +36,35 @@
             </ul>
         </div>
         <div class="col-sm-8">
-            {{ selectedQuiz.name }}
-        </div>
-	</div>
-	<div class="row">		
-        <div class="col-sm-8">
-            {{ selectedQuiz.name }}
+			<div class="row">	
+				<div class="col-sm-12">
+					{{ selectedQuiz.name }}
+				</div>
+			</div>
+			<div class="row">	
+				<div class="col-sm-12">
+					<!-- #selected-quiz-detail -->
+					<div id="selected-quiz-detail" class="card" style="width: 18rem;">
+						<div class="card-body">
+							<h5 class="card-title">
+								Card Details
+							</h5>
+							<p class="card-text">
+								<label>
+									Quiz Name
+									<input type="text" value="" />
+								</label>
+							</p>
+							<a href="#" class="btn btn-primary">Save</a>
+						</div>
+					</div>
+				</div>
+			</div>            
+			<div class="row">	
+				<div class="col-sm-12">
+					TODO Questions (Unkown)
+				</div>
+			</div>            
         </div>
 	</div>
 </div>
