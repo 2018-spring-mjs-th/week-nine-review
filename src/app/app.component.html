@@ -15,18 +15,6 @@
       <button class="btn btn-outline-success btn-sm" (click)="addQuiz()">ADD A NEW QUIZ</button>
       <br>
       <br>
-    </div>
-    <div class="col-sm-8">
-      <span class="badge badge-success">2</span> EDIT THE SELECTED QUIZ
-      <br>
-      <br>
-      <button class="btn btn-outline-success btn-sm">SAVE CHANGES</button>
-      <button class="btn btn-link btn-sm">CANCEL CHANGES</button>
-
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-4">
       <ul class="list-group">
         <li *ngFor="let q of quizzes" [class.active]="q === currentlySelectedQuiz" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
           (click)="makeQuizSelected(q)">
@@ -34,32 +22,48 @@
           <span class="badge badge-secondary" [class.bg-danger]="q.numberQuestions == 0">{{ q.numberQuestions }}</span>
         </li>
       </ul>
+      <br>
     </div>
-    <div class="col-sm-8" *ngIf="currentlySelectedQuiz == undefined">
-      No quiz selected
-    </div>
-    <div class="col-sm-8" *ngIf="currentlySelectedQuiz != undefined">
-      <div class="card">
-        <div class="card-header">
-          GENERAL
-        </div>
-        <div class="card-body">
-          <div class="form-group">
-            <label>
-              NAME
-              <input type="text" class="form-control" [(ngModel)]="currentlySelectedQuiz.name" />
-            </label>
+    <div class="col-sm-8">
+      <span class="badge badge-success">2</span> EDIT THE SELECTED QUIZ
+
+      <div class="text-center" *ngIf="currentlySelectedQuiz == undefined">
+        <br>
+        <div class="card bg-light">
+            <div class="card-body">
+              <h5 class="card-title text-danger">NO QUIZ SELECTED</h5>
+              <p class="card-text">Select or add a quiz on the left.</p>
+            </div>
+          </div>
+      </div>
+      <div *ngIf="currentlySelectedQuiz != undefined">
+        <br>
+        <button class="btn btn-outline-success btn-sm">SAVE CHANGES</button>
+        <button class="btn btn-link btn-sm">CANCEL CHANGES</button>
+        <br>
+        <br>
+        <div class="card">
+          <div class="card-header">
+            GENERAL
+          </div>
+          <div class="card-body">
+            <div class="form-group">
+              <label>
+                NAME
+                <input type="text" class="form-control" [(ngModel)]="currentlySelectedQuiz.name" />
+              </label>
+            </div>
           </div>
         </div>
-      </div>
-      <br>
-      <br>
-      <div class="card">
-        <div class="card-header">
-          QUESTIONS
-        </div>
-        <div class="card-body">
-          Coming Soon!
+        <br>
+        <br>
+        <div class="card">
+          <div class="card-header">
+            QUESTIONS
+          </div>
+          <div class="card-body">
+            Coming Soon!
+          </div>
         </div>
       </div>
     </div>
