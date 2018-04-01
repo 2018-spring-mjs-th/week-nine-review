@@ -6,6 +6,8 @@ interface quizDisplay {
   numberQuestions: number;
 }
 
+type selectedQuiz = quizDisplay | undefined;
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -40,15 +42,15 @@ export class AppComponent {
     this.quizzes = this.quizSvc.getQuizzes();
   }
 
-  selectedQuiz: quizDisplay = { name: "No quiz selected", numberQuestions: 0 };
+  currentlySelectedQuiz: selectedQuiz = undefined;
 
   makeQuizSelected(q: quizDisplay) {
-    this.selectedQuiz = q;
+    this.currentlySelectedQuiz = q;
   }
 
   addQuiz() {
     let newQuiz = { name: "New Untitled Quiz", numberQuestions: 0};
     this.quizzes.push(newQuiz);
-    this.selectedQuiz = newQuiz;
+    this.currentlySelectedQuiz = newQuiz;
   }
 }
