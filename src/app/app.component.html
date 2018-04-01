@@ -9,34 +9,56 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-4">
-        <span class="badge badge-success">1</span> SELECT A QUIZ
-        <br>
-        <br>
-        <button class="btn btn-outline-success btn-sm" (click)="addQuiz()">ADD A NEW QUIZ</button>
-        <br>
-        <br>
-      </div>
+      <span class="badge badge-success">1</span> SELECT A QUIZ
+      <br>
+      <br>
+      <button class="btn btn-outline-success btn-sm" (click)="addQuiz()">ADD A NEW QUIZ</button>
+      <br>
+      <br>
+    </div>
     <div class="col-sm-8">
-        <span class="badge badge-success">2</span> EDIT THE SELECTED QUIZ
-        <br>
-        <br>
-        <button class="btn btn-outline-success btn-sm">SAVE CHANGES</button>
-        <button class="btn btn-link btn-sm">CANCEL CHANGES</button>
-        
+      <span class="badge badge-success">2</span> EDIT THE SELECTED QUIZ
+      <br>
+      <br>
+      <button class="btn btn-outline-success btn-sm">SAVE CHANGES</button>
+      <button class="btn btn-link btn-sm">CANCEL CHANGES</button>
+
     </div>
   </div>
   <div class="row">
     <div class="col-sm-4">
       <ul class="list-group">
-        <li *ngFor="let q of quizzes" [class.active]="q === selectedQuiz" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" (click)="makeQuizSelected(q)">
+        <li *ngFor="let q of quizzes" [class.active]="q === selectedQuiz" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+          (click)="makeQuizSelected(q)">
           {{ q.name }}
-          <span class="badge badge-secondary" [class.bg-danger]="q.numberQuestions == 0" >{{ q.numberQuestions }}</span>
+          <span class="badge badge-secondary" [class.bg-danger]="q.numberQuestions == 0">{{ q.numberQuestions }}</span>
         </li>
       </ul>
     </div>
     <div class="col-sm-8">
-      {{ selectedQuiz.name }}
+      <div class="card">
+        <div class="card-header">
+          GENERAL
+        </div>
+        <div class="card-body">
+          <div class="form-group">
+            <label>
+              NAME
+              <input type="text" class="form-control" [(ngModel)]="selectedQuiz.name" />
+            </label>
+          </div>
+        </div>
+      </div>
+      <br>
+      <br>
+      <div class="card">
+        <div class="card-header">
+          QUESTIONS
+        </div>
+        <div class="card-body">
+          Coming Soon!
+        </div>
+      </div>
     </div>
   </div>
 </div>
-
