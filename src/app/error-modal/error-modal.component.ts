@@ -1,15 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-error-modal',
   templateUrl: './error-modal.component.html',
-  styleUrls: ['./error-modal.component.css']
+  styleUrls: [
+    './error-modal.component.css'
+    , '../../../node_modules/bootstrap/dist/css/bootstrap.min.css'
+]
 })
-export class ErrorModalComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
+export class ErrorModalComponent {
+  constructor(private activeModal: NgbActiveModal) { }
 }

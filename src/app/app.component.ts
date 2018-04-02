@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { QuizService } from './quiz.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ErrorModalComponent } from './error-modal/error-modal.component';
 
 interface quizDisplay {
   name: string;
@@ -32,7 +34,7 @@ export class AppComponent {
   //quizService: QuizService;
 
   // TS automatic properties!!!
-  constructor(private quizSvc: QuizService) {
+  constructor(private quizSvc: QuizService, private modalService: NgbModal) {
     //this.quizService = quizSvc;
   }
 
@@ -46,6 +48,9 @@ export class AppComponent {
       })
       .catch( error => {
         console.log(error);
+        //this.modalService.open("ErrorModalComponent");
+        //this.modalService.open(content);
+        this.modalService.open(ErrorModalComponent);
       });
   }
 

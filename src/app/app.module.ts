@@ -20,7 +20,8 @@ import { ErrorModalComponent } from './error-modal/error-modal.component';
     , HttpModule
     , NgbModule.forRoot()
   ],
-  providers: [ QuizService],
+  providers: [QuizService],
   bootstrap: [AppComponent]
+  , entryComponents: [ErrorModalComponent]
 })
 export class AppModule { }
