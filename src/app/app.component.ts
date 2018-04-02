@@ -39,7 +39,7 @@ export class AppComponent {
   quizzes: quizDisplay[] = [];
 
   ngOnInit() {
-    this.quizzes = this.quizSvc.getQuizzes();
+    this.quizzes = this.quizSvc.getQuizzes().quizzes;
   }
 
   currentlySelectedQuiz: selectedQuiz = undefined;
