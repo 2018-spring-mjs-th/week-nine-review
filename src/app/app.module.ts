@@ -7,10 +7,12 @@ import { AppComponent } from './app.component';
 import { QuizService } from './quiz.service';
 import { HttpModule } from '@angular/http';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { ErrorModalComponent } from './error-modal/error-modal.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ErrorModalComponent
   ],
   imports: [
     BrowserModule
