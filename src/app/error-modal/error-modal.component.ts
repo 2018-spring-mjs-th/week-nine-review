@@ -6,7 +6,6 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './error-modal.component.html',
   styleUrls: [
     './error-modal.component.css'
-    , '../../../node_modules/bootstrap/dist/css/bootstrap.min.css'
 ]
 })
 export class ErrorModalComponent {
