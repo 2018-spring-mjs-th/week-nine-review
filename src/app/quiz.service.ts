@@ -9,19 +9,12 @@ export class QuizService {
 
   public getQuizzes() {
 
-    this.angularBuiltInHttpService.get('https://2017springserverless.azurewebsites.net/api/HttpTriggerJS1?name=Foo')
-      .toPromise()
-      .then(data => {
-        console.log(data);
-      })
-      .catch( error => {
-        console.log(error);
-      });
-
-    return {
-      quizzes: [
-        { name: "Quiz 1", numberQuestions: 10 }
-      , { name: "Quiz 2", numberQuestions: 0 }
-    ]};
+    return this.angularBuiltInHttpService.get('https://modern-js.azurewebsites.net/api/HttpTriggerJS1?code=8XD3vN3ehHLdZacBQJQhgUnNst9202gdd5VM3kWCytDkz2nXhia6kA==&name=Foo')
+      .toPromise();
+      
+    // return [
+    //     { name: "Quiz 1", numberQuestions: 10 }
+    //   , { name: "Quiz 2", numberQuestions: 0 }
+    // ];
   }
 }
