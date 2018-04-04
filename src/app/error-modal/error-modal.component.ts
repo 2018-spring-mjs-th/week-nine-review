@@ -9,5 +9,5 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 ]
 })
 export class ErrorModalComponent {
-  constructor(private activeModal: NgbActiveModal) { }
+  constructor(public activeModal: NgbActiveModal) { }
 }
