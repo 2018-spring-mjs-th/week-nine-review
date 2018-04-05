@@ -17,4 +17,15 @@ export class QuizService {
     //   , { name: "Quiz 2", numberQuestions: 0 }
     // ];
   }
+
+  public saveQuiz(succeed: boolean): Promise<string> {
+
+    let p = new Promise<string>((resolve, reject) => {
+
+      succeed ? resolve("Quiz saved!") : reject("Save failed!")
+
+    });
+
+    return p;
+  }
 }
