@@ -14,6 +14,14 @@
       <br>
       <button class="btn btn-outline-success btn-sm" (click)="addQuiz()">ADD A NEW QUIZ</button>
       <br>
+      <br>      
+      <ul class="list-group">
+        <li *ngFor="let q of quizzes" [class.active]="q === selectedQuiz" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+          (click)="makeQuizSelected(q)">
+          {{ q.name }}
+          <span class="badge badge-secondary" [class.bg-danger]="q.numberQuestions == 0">{{ q.numberQuestions }}</span>
+        </li>
+      </ul>
       <br>
     </div>
     <div class="col-sm-8">
@@ -22,20 +30,8 @@
       <br>
       <button class="btn btn-outline-success btn-sm">SAVE CHANGES</button>
       <button class="btn btn-link btn-sm">CANCEL CHANGES</button>
-
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-4">
-      <ul class="list-group">
-        <li *ngFor="let q of quizzes" [class.active]="q === selectedQuiz" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
-          (click)="makeQuizSelected(q)">
-          {{ q.name }}
-          <span class="badge badge-secondary" [class.bg-danger]="q.numberQuestions == 0">{{ q.numberQuestions }}</span>
-        </li>
-      </ul>
-    </div>
-    <div class="col-sm-8">
+      <br>
+      <br>      
       <div class="card">
         <div class="card-header">
           GENERAL
@@ -49,7 +45,6 @@
           </div>
         </div>
       </div>
-      <br>
       <br>
       <div class="card">
         <div class="card-header">
