@@ -34,7 +34,7 @@
       </div>
       <div class="col-sm-8">
         <div class="card">
-          <div class="card-header text-white bg-primary">General</div>
+          <div class="card-header text-white bg-primary text-uppercase">General</div>
           <div class="card-body">
             <label>
               <input id="focusme" type="text" [(ngModel)]="selectedQuiz.name">
@@ -43,8 +43,9 @@
         </div>
         <br>
         <div class="card">
-          <div class="card-header text-black bg-danger">Questions</div>
+          <div class="card-header text-secondary bg-danger">Questions</div>
           <div class="card-body">
+            <h3> {{selectedQuiz.name}}</h3>
 
           <input type="text">
           <br>
