@@ -1,6 +1,12 @@
 import { Component } from '@angular/core';
 import { QuizService } from './quiz.service';
 
+interface quizDisplay {
+  name: string;
+  numberQuestions: number;
+}
+
+type selectedQuizType = quizDisplay | undefined;
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -29,15 +35,15 @@ export class AppComponent {
     //this.quizService = quizSvc;
   }
 
-  quizzes = [];
+  quizzes: quizDisplay[] = [];
 
   ngOnInit() {
     this.quizzes = this.quizSvc.getQuizzes();
   }
 
-  selectedQuiz = { name: "No quiz selected" };
+  selectedQuiz : selectedQuizType = undefined;
 
-  makeQuizSelected(q) {
+  makeQuizSelected(q: quizDisplay) {
     this.selectedQuiz = q;
   }
 
