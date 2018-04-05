@@ -45,5 +45,6 @@ export class AppComponent {
     let newQuiz = { name: "New Untitled Quiz", numberQuestions: 0};
     this.quizzes.push(newQuiz);
     this.selectedQuiz = newQuiz;
+    document.getElementById("focusme").focus()
   }
 }
