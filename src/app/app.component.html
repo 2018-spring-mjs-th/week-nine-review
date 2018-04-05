@@ -31,25 +31,40 @@
       <button class="btn btn-link btn-sm">CANCEL CHANGES</button>
       <br>
       <br>
-        <div class="card">
-            <div class="card-header">
-              General
-            </div>
-            <div class="card-body">
-              <h5>Name</h5>
-                <input type="text"  [(ngModel)]="selectedQuiz.name" />
-            </div>
-          </div>
-          <br>
+      <div *ngIf="selectedQuiz === undefined">
           <div class="card">
-            <div class="card-header">
-              Questions
+              <div class="card-body text-center text-muted">
+                <h5>No Quiz selected</h5>
+                Please select a quiz in step <span class="badge badge-success">1</span>
+              </div>
             </div>
-            <div class="card-body">
-              <h5>Coming Soon!</h5>
+
+      </div>
+      
+      <div *ngIf="selectedQuiz !== undefined">
+
+          <div class="card">
+              <div class="card-header">
+                General
+              </div>
+              <div class="card-body">
+                <h5>Name</h5>
+                  <input type="text"  [(ngModel)]="selectedQuiz.name" />
+              </div>
             </div>
-          </div>
-          <br>
+            <br>
+            <div class="card">
+              <div class="card-header">
+                Questions
+              </div>
+              <div class="card-body">
+                <h5>Coming Soon!</h5>
+              </div>
+            </div>
+            <br>
+      </div>
+
+        
     </div>
   </div>
 
