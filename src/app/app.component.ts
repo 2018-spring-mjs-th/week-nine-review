@@ -38,15 +38,11 @@ export class AppComponent {
 
   quizzes: quizDisplay[] = [];
 
-  ngOnInit() {
-    
-    //this.quizzes = this.quizSvc.getQuizzes();
-
-
+  ngOnInit() {    
     // This is how to consume (or use) a Promise.
     this.quizSvc.getQuizzes()
       .then(data => {
-        this.quizzes = data.json();
+        this.quizzes = JSON.parse(data.text());
       })
       .catch(error => {
         console.log(error);
