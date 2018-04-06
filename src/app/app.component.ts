@@ -61,9 +61,17 @@ export class AppComponent {
     this.selectedQuiz = newQuiz;
   }
 
-  saveQuiz() {
-    this.quizSvc.saveQuiz(this.selectedQuiz)
-    .then(success => console.log(success))
-    .catch(failure => console.log(failure));    
+  async saveQuiz() {
+    // this.quizSvc.saveQuiz(this.selectedQuiz)
+    // .then(success => console.log(success))
+    // .catch(failure => console.log(failure));
+    try {
+      let result = await this.quizSvc.saveQuiz(this.selectedQuiz);
+      console.log(result);  
+    } catch (error) {
+      console.log(error);
+    }
+    
+      
   }
 }
