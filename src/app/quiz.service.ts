@@ -11,4 +11,11 @@ export class QuizService {
     return this.builtInAngularHttpService.get('https://modern-js.azurewebsites.net/api/HttpTriggerJS1?code=8XD3vN3ehHLdZacBQJQhgUnNst9202gdd5VM3kWCytDkz2nXhia6kA==&name=Hard Quiz').toPromise();
   }
 
+  public saveQuiz(succeed: boolean): Promise<string> {
+
+    return new Promise((resolve, reject) => {
+      succeed ? resolve("Quiz Saved!") : reject("Save Failed");
+    });
+  }
+
 }
