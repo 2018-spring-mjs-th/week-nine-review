@@ -42,7 +42,7 @@ export class AppComponent {
     // This is how to consume (or use) a Promise.
     this.quizSvc.getQuizzes()
       .then(data => {
-        this.quizzes = JSON.parse(data.text());
+        this.quizzes = data.json();
       })
       .catch(error => {
         console.log(error);
@@ -71,7 +71,5 @@ export class AppComponent {
     } catch (error) {
       console.log(error);
     }
-    
-      
   }
 }
