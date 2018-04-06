@@ -1,6 +1,9 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
