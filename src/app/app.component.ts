@@ -1,6 +1,13 @@
 import { Component } from '@angular/core';
 import { QuizService } from './quiz.service';
 
+interface quizDisplay {
+  name: string;
+  numberQuestions: number;
+}
+
+type selectedQuizType = quizDisplay | undefined;
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -29,15 +36,22 @@ export class AppComponent {
     //this.quizService = quizSvc;
   }
 
-  quizzes = [];
+  quizzes: quizDisplay[] = [];
 
   ngOnInit() {
-    this.quizzes = this.quizSvc.getQuizzes();
+    // this.quizzes = this.quizSvc.getQuizzes();
+
+    this.quizSvc.getQuizzes()
+      .then(data => {
+        console.log(data);
+        this.quizzes = data as quizDisplay[];
+      })
+      .catch();
   }
 
-  selectedQuiz = { name: "No quiz selected" };
+  selectedQuiz: selectedQuizType = undefined;
 
-  makeQuizSelected(q) {
+  makeQuizSelected(q: quizDisplay) {
     this.selectedQuiz = q;
   }
 
@@ -45,5 +59,15 @@ export class AppComponent {
     let newQuiz = { name: "New Untitled Quiz", numberQuestions: 0};
     this.quizzes.push(newQuiz);
     this.selectedQuiz = newQuiz;
+  }
+
+  saveQuiz() {
+    this.quizSvc.saveQuiz(true)
+      .then(data => {
+        console.log(data);
+      })
+      .catch(data => {
+        console.log(data);
+      });
   }
 }
