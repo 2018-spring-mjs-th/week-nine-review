@@ -21,6 +21,8 @@ export class AppComponent {
 
   color = "silver";
 
+  saveString = "";
+
   isDangerous = true;
 
   public toggleDanger() {
@@ -48,13 +50,26 @@ export class AppComponent {
         console.log(error);
       });
 
+
   }
+
+  saveChanges(succeed: boolean) {
+
+    this.quizSvc.saveQuiz(succeed)
+        .then(data => {
+          this.saveString = data;
+        })
+        .catch(error => {
+          this.saveString = error});
+    }
+
 
   selectedQuiz: selectedQuizType = undefined;
 
   makeQuizSelected(q: quizDisplay) {
     this.selectedQuiz = q;
   }
+
 
   addQuiz() {
     let newQuiz = { name: "New Untitled Quiz", numberQuestions: 0};
