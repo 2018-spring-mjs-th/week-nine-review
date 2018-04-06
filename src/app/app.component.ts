@@ -63,4 +63,19 @@ export class AppComponent {
     this.quizzes.push(newQuiz);
     this.selectedQuiz = newQuiz;
   }
+
+
+  myQuiz(dataOne : boolean) {
+    
+    this.quizSvc.saveQuiz(dataOne)
+    .then(returnedData => {
+        console.log(returnedData);
+        
+    }).catch(error => {
+      console.log(error);    
+    });
+  }
+    
+
+
 }
