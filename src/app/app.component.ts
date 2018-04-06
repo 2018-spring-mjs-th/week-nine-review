@@ -39,7 +39,17 @@ export class AppComponent {
   quizzes: quizDisplay[] = []; 
 
   ngOnInit() {
-    this.quizzes = this.quizSvc.getQuizzes();
+    
+    //this.quizzes = this.quizSvc.getQuizzes(); This sets up .quizzes
+
+    // This is how to consume a Promise.
+    this.quizSvc.getQuizzes() //If getQuizzes works, then do this, else, if it's an error, catch the error.
+      .then(data => {         //This defines a funciton that uses "data" as a parameter to do something.
+      this.quizzes = JSON.parse(data.text());
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 
   selectedQuiz: selectedQuizType = undefined;
