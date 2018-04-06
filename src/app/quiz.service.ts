@@ -16,4 +16,11 @@ export class QuizService {
     ];*/
   }
 
+  public saveQuiz(succeed: boolean): Promise<string> {  //I want saveQuiz to return a Promise of type string.
+    return new Promise((resolve, reject) => {
+      //run some code and either resolve it (success!) or reject it (failure :( )
+      succeed ? resolve("Quiz saved") : reject("Save failed");
+    });
+  }
+
 }

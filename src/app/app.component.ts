@@ -45,7 +45,7 @@ export class AppComponent {
     // This is how to consume a Promise.
     this.quizSvc.getQuizzes() //If getQuizzes works, then do this, else, if it's an error, catch the error.
       .then(data => {         //This defines a funciton that uses "data" as a parameter to do something.
-      this.quizzes = JSON.parse(data.text());
+      this.quizzes = JSON.parse(data.text()); //can also say data.json();
       })
       .catch(error => {
         console.log(error);
