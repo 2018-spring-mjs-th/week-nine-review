@@ -13,4 +13,11 @@ export class QuizService {
   
   }
 
+  public saveQuiz(succeed: boolean): Promise<string> {
+
+    return new Promise((resolve, reject) => {
+    //run some code and either resolve or reject it
+    succeed ? resolve("Quiz Saved!") : reject("Save Failed!!!");
+    });
+  }
 }
