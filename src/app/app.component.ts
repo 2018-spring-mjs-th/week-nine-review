@@ -39,7 +39,16 @@ export class AppComponent {
   quizzes: quizDisplay[] = [];
 
   ngOnInit() {
-    this.quizzes = this.quizSvc.getQuizzes();
+    // this.quizzes = this.quizSvc.getQuizzes();
+
+    //Using a Promise
+    this.quizSvc.getQuizzes()
+      .then(data => {
+        this.quizzes = JSON.parse(data.text());
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 
   selectedQuiz: selectedQuizType = undefined;
