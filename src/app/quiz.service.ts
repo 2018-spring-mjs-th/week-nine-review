@@ -27,9 +27,7 @@ export class QuizService {
       } else {
         resolve(`Save to quiz ${selectedQuiz.name} succeeded!`);
       }
-
-      // Run some code and either resolve it (success) or reject it (failure).
-      //succeed ? resolve("Quiz Saved!") : reject("Save Failed!");
     });
+    
   }
 }

@@ -63,7 +63,7 @@ export class AppComponent {
 
   saveQuiz() {
     this.quizSvc.saveQuiz(this.selectedQuiz)
-    .then(p => console.log(p))
-    .catch(p => console.log(p));    
+    .then(success => console.log(success))
+    .catch(failure => console.log(failure));    
   }
 }
