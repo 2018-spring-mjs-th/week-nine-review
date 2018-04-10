@@ -42,15 +42,20 @@ export class AppComponent {
     
     //this.quizzes = this.quizSvc.getQuizzes();
 
+    console.log("Before async call for data!");
+    
 
     // This is how to consume (or use) a Promise.
     this.quizSvc.getQuizzes()
       .then(data => {
+        console.log("Got data!");
         this.quizzes = data.json();
       })
       .catch(error => {
         console.log(error);
       });
+
+      console.log("After async call for data!");
   }
 
   selectedQuiz: selectedQuizType = undefined;
