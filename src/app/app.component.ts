@@ -44,18 +44,21 @@ export class AppComponent {
 
     console.log("Before async call for data!");
     
+    this.loadQuizzes();
 
+    console.log("After async call for data!");
+  }
+
+  private loadQuizzes() {
     // This is how to consume (or use) a Promise.
     this.quizSvc.getQuizzes()
-      .then(data => {
-        console.log("Got data!");
-        this.quizzes = data.json();
-      })
-      .catch(error => {
-        console.log(error);
-      });
-
-      console.log("After async call for data!");
+    .then(data => {
+      console.log("Got data!");
+      this.quizzes = data.json();
+    })
+    .catch(error => {
+      console.log(error);
+    });
   }
 
   selectedQuiz: selectedQuizType = undefined;
@@ -68,5 +71,10 @@ export class AppComponent {
     let newQuiz = { name: "New Untitled Quiz", numberQuestions: 0};
     this.quizzes.push(newQuiz);
     this.selectedQuiz = newQuiz;
+  }
+
+  cancelAllChanges() {
+    this.loadQuizzes();
+    this.selectedQuiz = undefined;
   }
 }
