@@ -4,6 +4,11 @@ import { QuizService } from './quiz.service';
 interface quizDisplay {
   name: string;
   numberQuestions: number;
+  questions: questionDisplay[];
+}
+
+interface questionDisplay {
+  name: string;
 }
 
 type selectedQuizType = quizDisplay | undefined;
@@ -68,7 +73,7 @@ export class AppComponent {
   }
 
   addQuiz() {
-    let newQuiz = { name: "New Untitled Quiz", numberQuestions: 0};
+    let newQuiz = { name: "New Untitled Quiz", numberQuestions: 0, questions: [] };
     this.quizzes.push(newQuiz);
     this.selectedQuiz = newQuiz;
   }
@@ -76,5 +81,18 @@ export class AppComponent {
   cancelAllChanges() {
     this.loadQuizzes();
     this.selectedQuiz = undefined;
+  }
+
+  removeQuestion(q: questionDisplay) {
+    if (this.selectedQuiz) {
+      this.selectedQuiz.questions = this.selectedQuiz.questions.filter(x => x !== q);
+    }
+  }
+
+  addQuestion() {
+    if (this.selectedQuiz) {
+      this.selectedQuiz.questions.push({ name: "New Untitled Question" });
+    }
+    
   }
 }
