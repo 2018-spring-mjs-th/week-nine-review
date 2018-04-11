@@ -3,7 +3,6 @@ import { QuizService } from './quiz.service';
 
 interface quizDisplay {
   name: string;
-  numberQuestions: number;
   questions: questionDisplay[];
 }
 
@@ -73,7 +72,7 @@ export class AppComponent {
   }
 
   addQuiz() {
-    let newQuiz = { name: "New Untitled Quiz", numberQuestions: 0, questions: [] };
+    let newQuiz = { name: "New Untitled Quiz", questions: [] };
     this.quizzes.push(newQuiz);
     this.selectedQuiz = newQuiz;
   }
