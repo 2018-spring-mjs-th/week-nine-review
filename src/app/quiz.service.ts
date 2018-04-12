@@ -21,4 +21,7 @@ export class QuizService {
       succeed ? resolve("Quiz Saved") : reject("Error");
     });
   }
+
+  
+
 }
