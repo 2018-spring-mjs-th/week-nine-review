@@ -3,6 +3,7 @@ import { QuizService } from './quiz.service';
 
 interface quizDisplay {
   name: string;
+  originalName: string;
   numberQuestions: number;
 }
 
@@ -55,6 +56,7 @@ export class AppComponent {
       .then(data => {
         console.log("Promise fulfilled!!!");
         this.quizzes = data.json();
+        this.quizzes = this.quizzes.map(x => ({ ...x, originalName: x.name }));
       })
       .catch(error => {
         console.log(error);
@@ -68,7 +70,7 @@ export class AppComponent {
   }
 
   addQuiz() {
-    let newQuiz = { name: "New Untitled Quiz", numberQuestions: 0};
+    let newQuiz = { name: "New Untitled Quiz", originalName: "New Untitled Quiz", numberQuestions: 0};
     this.quizzes.push(newQuiz);
     this.selectedQuiz = newQuiz;
   }
@@ -91,5 +93,9 @@ export class AppComponent {
   public cancelAllChanges() {
     this.loadQuizzes();
     this.selectedQuiz = undefined;
+  }
+
+  get numberOfEditedQuizzes(): number {
+    return this.quizzes.filter(x => x.name !== x.originalName).length;
   }
 }
