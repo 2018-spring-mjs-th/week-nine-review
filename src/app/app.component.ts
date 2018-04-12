@@ -44,6 +44,12 @@ export class AppComponent {
 
     console.log("Before promise.");
     
+    this.loadQuizzes();
+
+    console.log("After promise.");      
+  }
+
+  private loadQuizzes() {
     // This is how to consume (or use) a Promise.
     this.quizSvc.getQuizzes()
       .then(data => {
@@ -54,9 +60,6 @@ export class AppComponent {
       .catch(error => {
         console.log(error);
       });
-
-      console.log("After promise.");
-      
   }
 
   selectedQuiz: selectedQuizType = undefined;
@@ -66,7 +69,7 @@ export class AppComponent {
   }
 
   addQuiz() {
-    let newQuiz = { name: "New Untitled Quiz", numberQuestions: 0};
+    let newQuiz = { name: "New Untitled Quiz", numberQuestions: 0, questions: [] };
     this.quizzes.push(newQuiz);
     this.selectedQuiz = newQuiz;
   }
@@ -78,5 +81,10 @@ export class AppComponent {
     } catch (error) {
       console.log(error);      
     }    
+  }
+
+  cancelAllChanges() {
+    this.loadQuizzes();
+    this.selectedQuiz = undefined;
   }
 }
