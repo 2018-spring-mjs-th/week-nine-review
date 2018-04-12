@@ -70,4 +70,13 @@ export class AppComponent {
     this.quizzes.push(newQuiz);
     this.selectedQuiz = newQuiz;
   }
+
+  async saveChanges() {
+    try {
+      let result = await this.quizSvc.saveQuiz(true);
+      console.log(result);  
+    } catch (error) {
+      console.log(error);      
+    }    
+  }
 }
