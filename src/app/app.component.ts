@@ -42,15 +42,21 @@ export class AppComponent {
     
     //this.quizzes = this.quizSvc.getQuizzes();
 
-
+    console.log("Before promise.");
+    
     // This is how to consume (or use) a Promise.
     this.quizSvc.getQuizzes()
       .then(data => {
+        console.log("Promise fulfilled.");
+        
         this.quizzes = data.json();
       })
       .catch(error => {
         console.log(error);
       });
+
+      console.log("After promise.");
+      
   }
 
   selectedQuiz: selectedQuizType = undefined;
