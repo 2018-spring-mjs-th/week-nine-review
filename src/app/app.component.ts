@@ -87,4 +87,8 @@ export class AppComponent {
     this.loadQuizzes();
     this.selectedQuiz = undefined;
   }
+
+  addQuestion() {
+    
+  }
 }
