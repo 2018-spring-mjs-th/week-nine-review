@@ -43,9 +43,17 @@ export class AppComponent {
     //this.quizzes = this.quizSvc.getQuizzes();
 
 
-    // This is how to consume (or use) a Promise.
-    this.quizSvc.getQuizzes()
+    console.log("Before Promise!!!");
+    this.loadQuizzes();
+    console.log("After Promise!!!");
+      
+  }
+
+  private loadQuizzes() {
+      // This is how to consume (or use) a Promise.
+      this.quizSvc.getQuizzes()
       .then(data => {
+        console.log("Promise fulfilled!!!");
         this.quizzes = data.json();
       })
       .catch(error => {
@@ -63,5 +71,25 @@ export class AppComponent {
     let newQuiz = { name: "New Untitled Quiz", numberQuestions: 0};
     this.quizzes.push(newQuiz);
     this.selectedQuiz = newQuiz;
+  }
+
+  async saveChanges() {
+
+    try {
+      let result = await this.quizSvc.saveQuiz(true);
+      console.log(result);
+
+      let result2 = await this.quizSvc.saveQuiz(false);
+      console.log(result2);
+    }
+
+    catch(cat) {
+      console.log(cat);
+    }
+  }
+
+  public cancelAllChanges() {
+    this.loadQuizzes();
+    this.selectedQuiz = undefined;
   }
 }
