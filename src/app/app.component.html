@@ -63,7 +63,7 @@
             <button class="btn btn-outline-success btn-sm" (click)="addQuestion()">ADD NEW QUESTION</button>
             <ul class="list-group">
               <li *ngFor="let q of selectedQuiz.questions">
-
+                <input type="text" class="form-control" [(ngModel)]="q.name" />
               </li>
             </ul>
           </div>
