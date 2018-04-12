@@ -61,9 +61,13 @@
           </div>
           <div class="card-body">
             <button class="btn btn-outline-success btn-sm" (click)="addQuestion()">ADD NEW QUESTION</button>
+            <br>
             <ul class="list-group">
               <li *ngFor="let q of selectedQuiz.questions">
-                <input type="text" class="form-control" [(ngModel)]="q.name" />
+                <div class="form-group">
+                  <input type="text" class="form-control" [(ngModel)]="q.name" />
+                  <button class="btn btn-outline-success btn-sm" (click)="removeQuestion()">REMOVE</button>
+                </div>
               </li>
             </ul>
           </div>
