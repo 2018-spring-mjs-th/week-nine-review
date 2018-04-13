@@ -103,14 +103,14 @@ export class AppComponent {
   questions : questionDisplay[] = [];
 
   addQuestion() {
-    if (this.selectedQuiz != undefined) {
+    if (this.selectedQuiz) {
       let newQuestion = { name: "New Untitled Question" };
       this.selectedQuiz.questions.push(newQuestion);
     }
   }
 
   removeQuestion(q: questionDisplay) {
-    if (this.selectedQuiz != undefined) {
+    if (this.selectedQuiz) {
       this.selectedQuiz.questions = this.selectedQuiz.questions.filter((question) => question !== q);
     }
   }
