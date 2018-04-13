@@ -4,6 +4,11 @@ import { QuizService } from './quiz.service';
 interface quizDisplay {
   name: string;
   numberQuestions: number;
+  questions: question[];
+}
+
+interface question {
+  name: string;
 }
 
 type selectedQuizType = quizDisplay | undefined;
@@ -89,6 +94,12 @@ export class AppComponent {
   }
 
   addQuestion() {
-    
+    if (this.selectedQuiz) {
+      this.selectedQuiz.questions.push({"name": ""});
+    }
+  }
+
+  removeQuestion() {
+
   }
 }
