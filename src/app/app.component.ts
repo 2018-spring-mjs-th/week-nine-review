@@ -102,15 +102,16 @@ export class AppComponent {
 
   questions : questionDisplay[] = [];
 
-  selectedQuestion: selectedQuestionType = undefined;
-
-  makeQuestionSelected(q: questionDisplay) {
-    this.selectedQuestion = q;
+  addQuestion() {
+    if (this.selectedQuiz != undefined) {
+      let newQuestion = { name: "New Untitled Question" };
+      this.selectedQuiz.questions.push(newQuestion);
+    }
   }
 
-  public addQuestion() {
-    let newQuestion = { name: "New Untitled Question" };
-    this.questions.push(newQuestion);
-    this.selectedQuestion = newQuestion;
+  removeQuestion(q: questionDisplay) {
+    if (this.selectedQuiz != undefined) {
+      this.selectedQuiz.questions = this.selectedQuiz.questions.filter((question) => question !== q);
+    }
   }
 }
