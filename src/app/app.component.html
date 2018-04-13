@@ -28,8 +28,8 @@
       <span class="badge badge-success">2</span> EDIT THE SELECTED QUIZ
       <br>
       <br>
-      <button class="btn btn-outline-success btn-sm">SAVE CHANGES</button>
-      <button class="btn btn-link btn-sm">CANCEL CHANGES</button>
+      <button class="btn btn-outline-success btn-sm" (click)="saveChanges()">SAVE ALL CHANGES <span class='badge badge-danger'></span></button>
+      <button class="btn btn-link btn-sm" (click)="cancelAllChanges()">CANCEL ALL CHANGES</button>
       <br>
       <br>     
       <div *ngIf="selectedQuiz === undefined">
@@ -56,11 +56,17 @@
           </div>
           <br>
           <div class="card">
+            
+            
             <div class="card-header">
               QUESTIONS
             </div>
             <div class="card-body">
-              Coming Soon!
+                <button class="btn btn-outline-success btn-sm" (click)="addNewQuestion()">ADD NEW QUESTION</button><br><br>
+                <span *ngFor="let s of selectedQuiz.questions">
+                  <input display="inline" type="text" class="form-control" value={{s.name}}><button class="btn btn-link btn-sm" (click)="remove()">Remove</button>
+                </span>
+                
             </div>
           </div>          
       </div>        
