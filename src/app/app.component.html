@@ -19,7 +19,7 @@
         <li *ngFor="let q of quizzes" [class.active]="q === selectedQuiz" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
           (click)="makeQuizSelected(q)">
           {{ q.name }}
-          <span class="badge badge-secondary" [class.bg-danger]="q.numberQuestions == 0">{{ q.numberQuestions }}</span>
+          <span class="badge badge-secondary" [class.bg-danger]="q.questions.length == 0">{{ q.questions.length }}</span>
         </li>
       </ul>
       <br>
@@ -28,8 +28,8 @@
       <span class="badge badge-success">2</span> EDIT THE SELECTED QUIZ
       <br>
       <br>
-      <button class="btn btn-outline-success btn-sm">SAVE CHANGES</button>
-      <button class="btn btn-link btn-sm">CANCEL CHANGES</button>
+      <button class="btn btn-outline-success btn-sm" (click)="saveChanges()">SAVE ALL CHANGES <span class="badge badge-danger"> 2</span></button>
+      <button class="btn btn-link btn-sm" (click)="cancelAllChanges()">CANCEL ALL CHANGES</button>
       <br>
       <br>     
       <div *ngIf="selectedQuiz === undefined">
@@ -60,7 +60,20 @@
               QUESTIONS
             </div>
             <div class="card-body">
-              Coming Soon!
+                <button class="btn btn-outline-success btn-sm" (click)=addQuestion()>ADD NEW QUESTION</button>
+                <br>
+                <br>
+                <div *ngFor="let q of selectedQuiz.questions">
+                  <div class="form-row">
+                    <div class="col-sm-8">
+                    <input type="text" class="form-control" [(ngModel)]="q.name" /> 
+                    </div>
+                    <div class="col-sm-4">
+                        <button class="btn btn-link" (click)="removeQuestion(q)">Remove</button>
+                    </div>
+                  </div>
+                  <br>
+                </div>
             </div>
           </div>          
       </div>        
