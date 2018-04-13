@@ -38,7 +38,7 @@ export class AppComponent {
   }
 
   quizzes: quizDisplay[] = [];
-  questions: {name : string}[];
+  
 
 
   ngOnInit() {
@@ -89,13 +89,23 @@ export class AppComponent {
   }
 
   addNewQuestion() {
-    let newQuestion = {name: "New Untitled Question"};
-    this.questions.push(newQuestion);
-
+    if (this.selectedQuiz != undefined ) {
+      let newQuestion = {name: "New Untitled Question"};
+      this.selectedQuiz.questions.push(newQuestion);
+    }
   }
 
-  remove() {
+  remove(s : {name: string}) {
+    let question: string;
+    if (this.selectedQuiz != undefined ) {
 
+      
+      for (let i = 0; i < this.selectedQuiz.questions.length; i++) {
+        if(s === this.selectedQuiz.questions[i]) {
+          this.selectedQuiz.questions.splice(i, 1);
+        }
+      }
+    }
   }
   
 
