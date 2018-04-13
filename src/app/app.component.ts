@@ -100,7 +100,7 @@ export class AppComponent {
     if (this.selectedQuiz != undefined ) {
 
       
-      for (let i = 0; i < this.selectedQuiz.questions.length; i++) {
+      for (let i:number = 0; i < this.selectedQuiz.questions.length; i++) {
         if(s === this.selectedQuiz.questions[i]) {
           this.selectedQuiz.questions.splice(i, 1);
         }
