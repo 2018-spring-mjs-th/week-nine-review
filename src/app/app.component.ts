@@ -88,6 +88,7 @@ export class AppComponent {
     if (this.selectedQuiz != null) {
       let newQuestion = {name: this.question};
       this.selectedQuiz.questions.push(newQuestion);
+      this.selectedQuiz.numberQuestions = this.selectedQuiz.questions.length;
       this.question = "";
     }
   }
@@ -96,6 +97,7 @@ export class AppComponent {
     if (q != null && this.selectedQuiz != null) {
       this.selectedQuiz.questions = this.selectedQuiz.questions
                                         .filter(question => question.name != q.name);
+      this.selectedQuiz.numberQuestions = this.selectedQuiz.questions.length;              
     }
   }
 }
