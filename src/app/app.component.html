@@ -19,7 +19,7 @@
         <li *ngFor="let q of quizzes" [class.active]="q === selectedQuiz" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
           (click)="makeQuizSelected(q)">
           {{ q.name }}
-          <span class="badge badge-secondary" [class.bg-danger]="q.numberQuestions == 0">{{ q.numberQuestions }}</span>
+          <span class="badge badge-secondary" [class.bg-danger]="q.numberQuestions == 0">{{ q.questions.length }}</span>
         </li>
       </ul>
       <br>
@@ -67,7 +67,7 @@
               <li *ngFor="let q of selectedQuiz.questions">
                 <div class="form-group">
                   <input type="text" class="form-control" [(ngModel)]="q.name" />
-                  <button class="btn btn-outline-success btn-sm" (click)="removeQuestion()">REMOVE</button>
+                  <button class="btn btn-outline-success btn-sm" (click)="removeQuestion(q)">REMOVE</button>
                 </div>
               </li>
             </ul>

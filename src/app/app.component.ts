@@ -99,7 +99,10 @@ export class AppComponent {
     }
   }
 
-  removeQuestion() {
-
+  removeQuestion(q: question) {
+    if (this.selectedQuiz) {
+      let questions = this.selectedQuiz.questions.filter(p => p !== q);
+      this.selectedQuiz.questions = questions;
+    }
   }
 }
