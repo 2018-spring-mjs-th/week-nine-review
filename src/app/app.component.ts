@@ -96,6 +96,6 @@ export class AppComponent {
   }
 
   get numberOfEditedQuizzes(): number {
-    return this.quizzes.filter(x => x.name !== x.originalName).length;
+    return this.quizzes.filter(x => x.name !== x.originalName || x.originalName === "New Untitled Quiz").length;
   }
 }
