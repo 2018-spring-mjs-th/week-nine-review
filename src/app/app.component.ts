@@ -1,9 +1,14 @@
 import { Component } from '@angular/core';
 import { QuizService } from './quiz.service';
 
+interface question {
+  name: string;
+}
+
 interface quizDisplay {
   name: string;
   numberQuestions: number;
+  questions: question[];
 }
 
 type selectedQuizType = quizDisplay | undefined;
@@ -47,6 +52,7 @@ export class AppComponent {
     this.quizSvc.getQuizzes()
       .then(data => {
         this.quizzes = data.json();
+        console.log(data.json());
       })
       .catch(error => {
         console.log(error);
@@ -54,14 +60,42 @@ export class AppComponent {
   }
 
   selectedQuiz: selectedQuizType = undefined;
+  undoQuizName: string = "";
+  question: string = "";
 
   makeQuizSelected(q: quizDisplay) {
     this.selectedQuiz = q;
+    this.undoQuizName = q.name;
   }
 
   addQuiz() {
-    let newQuiz = { name: "New Untitled Quiz", numberQuestions: 0};
+    let newQuiz = { name: "New Untitled Quiz", numberQuestions: 0, questions: []};
     this.quizzes.push(newQuiz);
     this.selectedQuiz = newQuiz;
+  }
+
+  async saveChanges() {
+    console.log("Winner");
+  }
+
+  public cancelChanges() {
+    if (this.selectedQuiz != null) {
+      this.selectedQuiz.name = this.undoQuizName;
+    }
+  }
+
+  public addQuestion(quiz: quizDisplay) {
+    if (this.selectedQuiz != null) {
+      let newQuestion = {name: this.question};
+      this.selectedQuiz.questions.push(newQuestion);
+      this.question = "";
+    }
+  }
+
+  public removeQuestion(q: question) {
+    if (q != null && this.selectedQuiz != null) {
+      this.selectedQuiz.questions = this.selectedQuiz.questions
+                                        .filter(question => question.name != q.name);
+    }
   }
 }
