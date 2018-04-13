@@ -1,0 +1,21 @@
+.button-actions {
+    margin: 1em 0;
+}
+
+.quizzes, .quiz-details {
+    margin-bottom: 1em;
+}
+
+.questions {
+    margin-top: 1em;
+}
+
+.question {
+    display: flex;
+    justify-content: space-between;
+    margin: .5em 0;
+}
+
+.question-actions {
+    display: flex;
+}

@@ -10,11 +10,11 @@
 	<div class="row">
 		<div class="col-sm-4">
 			<span class="badge badge-success">1</span> SELECT A QUIZ
-			<br>
-			<br>
-			<button class="btn btn-outline-success btn-sm" (click)="addQuiz()">ADD A NEW QUIZ</button>
-			<br>
-			<br>
+
+			<div class="button-actions">
+				<button class="btn btn-outline-success btn-sm add-quiz" (click)="addQuiz()">ADD A NEW QUIZ</button>
+			</div>
+
 			<div *ngIf="selectedQuiz === undefined">
 				<div class="card">
 					<div class="card-body text-center text-muted">
@@ -25,7 +25,7 @@
 				</div>
 			</div>
 
-			<div *ngIf="quizzes.length !== undefined">
+			<div class="quizzes" *ngIf="quizzes.length !== undefined">
 				<ul class="list-group">
 					<li *ngFor="let q of quizzes" [class.active]="q === selectedQuiz" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
 						(click)="makeQuizSelected(q)">
@@ -34,20 +34,21 @@
 					</li>
 				</ul>
 			</div>
-			<br>
 		</div>
+
 		<div *ngIf="selectedQuiz !== undefined" class="col-sm-8">
 			<span class="badge badge-success">2</span> EDIT THE SELECTED QUIZ
-			<br>
-			<br>
-			<button class="btn btn-outline-success btn-sm" (click)="saveQuiz(true)">SAVE CHANGES</button>
-			<button class="btn btn-link btn-sm">CANCEL CHANGES</button>
-			<br>
-			<br>
-			<div class="card">
+
+			<div class="button-actions">
+				<button class="btn btn-outline-success btn-sm" (click)="saveQuiz(true)">SAVE CHANGES</button>
+				<button class="btn btn-link btn-sm" (click)="cancelChanges(quizzes)">CANCEL CHANGES</button>
+			</div>
+
+			<div class="quiz-details card">
 				<div class="card-header">
 					GENERAL
 				</div>
+				
 				<div class="card-body">
 					<div class="form-group">
 						<label>
@@ -57,13 +58,29 @@
 					</div>
 				</div>
 			</div>
-			<br>
-			<div class="card">
+
+			<div class="quiz-questions card">
 				<div class="card-header">
 					QUESTIONS
 				</div>
+
 				<div class="card-body">
-					Coming Soon!
+					<div class="question-actions">
+						<input type="text" class="form-control question-name" [(ngModel)]="newQuestionName" />
+						<button type="button" class="btn btn-outline-success btn-sm" (click)="addQuestion(newQuestionName)">ADD NEW QUESTION</button>
+					</div>
+
+					<div class="questions" *ngIf="selectedQuiz.questions.length > 0">
+						<div class="question" *ngFor="let question of selectedQuiz.questions">
+							<div class="question-name">
+								{{question.name}}
+							</div>
+
+							<div class="question-actions">
+								<button type="button" class="btn btn-outline-danger btn-sm" (click)="removeQuestion(question.name)">REMOVE</button>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
