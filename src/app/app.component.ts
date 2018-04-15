@@ -81,6 +81,7 @@ export class AppComponent {
   }
 
   cancelAllChanges() {
+    this.quizzes = [];
     this.loadQuizzes();
     this.selectedQuiz = undefined;
   }
