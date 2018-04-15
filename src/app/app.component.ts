@@ -60,7 +60,8 @@ export class AppComponent {
     this.quizSvc.getQuizzes()
     .then(data => {
       console.log("Got data!");
-      this.quizzes = data.json().map(x => ({ ...x, originalName: x.name, originalQuestionsString: x.questions.map(y => y.name).join("") }));
+      this.quizzes = data.json();
+      this.quizzes = this.quizzes.map(x => ({ ...x, originalName: x.name, originalQuestionsString: x.questions.map(y => y.name).join("") }));
     })
     .catch(error => {
       console.log(error);
