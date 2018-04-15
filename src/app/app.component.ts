@@ -3,7 +3,9 @@ import { QuizService } from './quiz.service';
 
 interface quizDisplay {
   name: string;
+  originalName: string;
   questions: questionDisplay[];
+  originalQuestionsString: string;
 }
 
 interface questionDisplay {
@@ -58,7 +60,7 @@ export class AppComponent {
     this.quizSvc.getQuizzes()
     .then(data => {
       console.log("Got data!");
-      this.quizzes = data.json();
+      this.quizzes = data.json().map(x => ({ ...x, originalName: x.name, originalQuestionsString: x.questions.map(y => y.name).join("") }));
     })
     .catch(error => {
       console.log(error);
@@ -72,7 +74,7 @@ export class AppComponent {
   }
 
   addQuiz() {
-    let newQuiz = { name: "New Untitled Quiz", questions: [] };
+    let newQuiz = { name: "New Untitled Quiz", originalName: "New Untitled Quiz", questions: [], originalQuestionsString: "" };
     this.quizzes.push(newQuiz);
     this.selectedQuiz = newQuiz;
   }
@@ -92,6 +94,12 @@ export class AppComponent {
     if (this.selectedQuiz) {
       this.selectedQuiz.questions.push({ name: "New Untitled Question" });
     }
-    
+  }
+
+  get numberOfEditedQuizzes(): number {
+      return this.quizzes.filter(x => x.name !== x.originalName 
+        || x.originalName === "New Untitled Quiz"
+        || x.originalQuestionsString !== x.questions.map(y => y.name).join("")
+      ).length;  
   }
 }
