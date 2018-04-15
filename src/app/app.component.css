@@ -1,0 +1,13 @@
+.details-loaded-animation {
+    animation-name: details-from-left;
+    animation-delay:  30ms;
+    animation-duration: 300ms;     
+}
+
+@keyframes details-from-left {
+      0% {transform: translateX(-30px) }
+      25% {transform: translateX(-20px) }
+    50% {transform: translateX(-10px) }
+    75% {transform: translateX(-5px) }
+    100% {transform: translateX(0px) }
+}   
