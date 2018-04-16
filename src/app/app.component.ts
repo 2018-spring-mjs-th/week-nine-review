@@ -71,17 +71,17 @@ export class AppComponent {
   selectedQuiz: selectedQuizType = undefined;
 
   makeQuizSelected(q: quizDisplay) {
-    this.animateAndCleanup();
+    this.animateDetails();
     this.selectedQuiz = q;
   }
 
-  private animateAndCleanup() {
-    this.isAnimatingFromLeft = true;
-    setTimeout(x => this.isAnimatingFromLeft = false, 500);
+  private animateDetails() {
+    this.isDetailsDisplayedAnimating = true;
+    setTimeout(x => this.isDetailsDisplayedAnimating = false, 500);
   }
-  
+
   addQuiz() {
-    this.animateAndCleanup();
+    this.animateDetails();
     let newQuiz = { name: "New Untitled Quiz", originalName: "New Untitled Quiz", questions: [], originalQuestionsString: "" };
     this.quizzes.push(newQuiz);
     this.selectedQuiz = newQuiz;
@@ -112,5 +112,5 @@ export class AppComponent {
       ).length;  
   }
 
-  isAnimatingFromLeft: Boolean = false;
+  isDetailsDisplayedAnimating: Boolean = false;
 }
