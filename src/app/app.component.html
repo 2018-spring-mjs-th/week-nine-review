@@ -22,7 +22,7 @@
         <br>
         <button class="btn btn-outline-success btn-sm">SAVE CHANGES</button>
         <button class="btn btn-link btn-sm">CANCEL CHANGES</button>
-        
+
     </div>
   </div>
   <div class="row">
@@ -35,8 +35,19 @@
       </ul>
     </div>
     <div class="col-sm-8">
-      {{ selectedQuiz.name }}
+      <div class="card">
+        <div class="card-header">GENERAL</div>
+        <div class="card-body">
+          <label>NAME</label>
+          <input type="text" class="form-control" [(ngModel)]="selectedQuiz.name">
+          <br />
+        </div>
+      </div>
+      <br /><br />
+      <div class="card">
+        <div class="card-header">QUESTIONS</div>
+        <div class="card-body">Coming Soon!</div>
+      </div>
     </div>
   </div>
 </div>
-
