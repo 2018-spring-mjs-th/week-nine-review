@@ -64,4 +64,15 @@ export class AppComponent {
     this.quizzes.push(newQuiz);
     this.selectedQuiz = newQuiz;
   }
+
+  saveQuiz() {
+    this.quizSvc.saveQuiz(true)
+    .then(data => {
+      console.log(data);
+    })
+    .catch(error => {
+      console.log(error);
+    })
+
+  }
 }
