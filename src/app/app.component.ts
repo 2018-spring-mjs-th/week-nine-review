@@ -3,6 +3,10 @@ import { QuizService } from './quiz.service';
 
 interface quizDisplay {
   name: string;
+<<<<<<< HEAD
+=======
+  numberQuestions: number;
+>>>>>>> origin/rbruinsma/week-12-slack-n-tell
   questions: questionDisplay[];
 }
 
@@ -11,6 +15,8 @@ interface questionDisplay {
 }
 
 type selectedQuizType = quizDisplay | undefined;
+
+type selectedQuestionType = questionDisplay | undefined;
 
 @Component({
   selector: 'app-root',
@@ -68,7 +74,11 @@ export class AppComponent {
   }
 
   addQuiz() {
+<<<<<<< HEAD
     let newQuiz = { name: "New Untitled Quiz", questions: [] };
+=======
+    let newQuiz = { name: "New Untitled Quiz", numberQuestions: 0, questions: []};
+>>>>>>> origin/rbruinsma/week-12-slack-n-tell
     this.quizzes.push(newQuiz);
     this.selectedQuiz = newQuiz;
   }
@@ -93,6 +103,7 @@ export class AppComponent {
     this.selectedQuiz = undefined;
   }
 
+<<<<<<< HEAD
   removeQuestion(q: questionDisplay) {
     if (this.selectedQuiz) {
       this.selectedQuiz.questions = this.selectedQuiz.questions.filter(x => x !== q);
@@ -103,5 +114,20 @@ export class AppComponent {
     if (this.selectedQuiz) {
       this.selectedQuiz.questions.push({ name: "New Untitled Question" });
     }  
+=======
+  questions : questionDisplay[] = [];
+
+  addQuestion() {
+    if (this.selectedQuiz) {
+      let newQuestion = { name: "New Untitled Question" };
+      this.selectedQuiz.questions.push(newQuestion);
+    }
+  }
+
+  removeQuestion(q: questionDisplay) {
+    if (this.selectedQuiz) {
+      this.selectedQuiz.questions = this.selectedQuiz.questions.filter((question) => question !== q);
+    }
+>>>>>>> origin/rbruinsma/week-12-slack-n-tell
   }
 }
