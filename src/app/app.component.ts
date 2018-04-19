@@ -67,10 +67,19 @@ export class AppComponent {
   selectedQuiz: selectedQuizType = undefined;
 
   makeQuizSelected(q: quizDisplay) {
+    this.animateDetailsDisplay();
     this.selectedQuiz = q;
   }
 
+  isDetailsDisplayAnimating: Boolean = false;
+  
+  private animateDetailsDisplay() {
+    this.isDetailsDisplayAnimating = true;
+    setTimeout(x => this.isDetailsDisplayAnimating = false, 500);
+  }
+  
   addQuiz() {
+    this.animateDetailsDisplay();
     let newQuiz = { name: "New Untitled Quiz", originalName: "New Untitled Quiz", questions: [], originalQuestionsString: "" };
     this.quizzes.push(newQuiz);
     this.selectedQuiz = newQuiz;

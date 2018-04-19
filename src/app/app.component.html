@@ -24,12 +24,12 @@
       </ul>
       <br>
     </div>
-    <div class="col-sm-8">
+    <div class="col-sm-8" [class.details-display-animation]="isDetailsDisplayAnimating">
       <span class="badge badge-success">2</span> EDIT THE SELECTED QUIZ
       <br>
       <br>
       <button class="btn btn-sm" [class.btn-outline-success]="numberOfEditedQuizzes === 0" [class.btn-success]="numberOfEditedQuizzes > 0" (click)="saveChanges()">SAVE QUIZZES ({{ numberOfEditedQuizzes }})</button>
-    <button class="btn btn-link btn-sm text-muted" (click)="cancelAllChanges()">CANCEL</button>
+      <button class="btn btn-link btn-sm text-muted" (click)="cancelAllChanges()">CANCEL</button>
       <br>
       <br>     
       <div *ngIf="selectedQuiz === undefined">
