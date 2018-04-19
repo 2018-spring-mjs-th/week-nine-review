@@ -64,8 +64,6 @@ export class AppComponent {
     });
   }
 
-
-
   selectedQuiz: selectedQuizType = undefined;
 
   makeQuizSelected(q: quizDisplay) {
@@ -98,7 +96,7 @@ export class AppComponent {
   }
 
   removeQuestion(questionToDelete: questionDisplay) {
-    if (this.selectedQuiz) {
+    if (this.selectedQuiz != undefined) {
       this.selectedQuiz.questions = this.selectedQuiz.questions.filter(x => x !== questionToDelete);
     }
   }
