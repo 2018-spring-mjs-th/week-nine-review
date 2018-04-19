@@ -3,6 +3,7 @@ import { QuizService } from './quiz.service';
 
 interface quizDisplay {
   name: string;
+  questions: string[];
   numberQuestions: number;
 }
 
@@ -49,12 +50,25 @@ export class AppComponent {
       
   }
 
+  public addQuestion() {
+    let newQuestion = {name: ''}
+    this.selectedQuiz.questions.push(newQuestion);
+    this.selectedQuiz.numberQuestions++;
+  }
+  
+  public removeQuestion(index: number) {
+    // TODO this is bad because it is Mutation vs Immutable
+    this.selectedQuiz.questions.splice(index, 1);
+    this.selectedQuiz.numberQuestions--;    
+  }
+
   private loadQuizzes() {
       // This is how to consume (or use) a Promise.
       this.quizSvc.getQuizzes()
       .then(data => {
         console.log("Promise fulfilled!!!");
         this.quizzes = data.json();
+        console.log(this.quizzes);
       })
       .catch(error => {
         console.log(error);
@@ -68,7 +82,7 @@ export class AppComponent {
   }
 
   addQuiz() {
-    let newQuiz = { name: "New Untitled Quiz", numberQuestions: 0};
+    let newQuiz = { name: "New Untitled Quiz", numberQuestions: 0, questions: []};
     this.quizzes.push(newQuiz);
     this.selectedQuiz = newQuiz;
   }
