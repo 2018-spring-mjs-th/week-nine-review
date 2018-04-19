@@ -59,8 +59,15 @@
             <div class="card-header">
               QUESTIONS
             </div>
+            
             <div class="card-body">
-              Coming Soon!
+              <button class="btn btn-outline-success btn-sm" (click)="addQuestion()">ADD NEW QUESTION</button>
+              <div *ngFor="let question of selectedQuiz.questions; let i = index" class="row">
+                <div class="col-md-9">
+                    <input type="text" class="form-control" [(ngModel)]="question.name" />
+                </div>
+                <div class="col-md-3"><button (click)="removeQuestion(i);" >Remove</button></div>
+              </div>
             </div>
           </div>          
       </div>        
