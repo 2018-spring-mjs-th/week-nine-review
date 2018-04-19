@@ -3,7 +3,11 @@ import { QuizService } from './quiz.service';
 
 interface quizDisplay {
   name: string;
-  numberQuestions: number;
+  questions: questionDisplay[];
+}
+
+interface questionDisplay {
+  name: string;
 }
 
 type selectedQuizType = quizDisplay | undefined;
@@ -17,7 +21,7 @@ type selectedQuizType = quizDisplay | undefined;
 })
 export class AppComponent {
 
-  title = 'week-nine-review';
+  title = 'QUIZ EDITOR';
 
   color = "silver";
 
@@ -39,10 +43,6 @@ export class AppComponent {
   quizzes: quizDisplay[] = [];
 
   ngOnInit() {
-    
-    //this.quizzes = this.quizSvc.getQuizzes();
-
-
     console.log("Before Promise!!!");
     this.loadQuizzes();
     console.log("After Promise!!!");
@@ -68,7 +68,7 @@ export class AppComponent {
   }
 
   addQuiz() {
-    let newQuiz = { name: "New Untitled Quiz", numberQuestions: 0};
+    let newQuiz = { name: "New Untitled Quiz", questions: [] };
     this.quizzes.push(newQuiz);
     this.selectedQuiz = newQuiz;
   }
@@ -91,5 +91,17 @@ export class AppComponent {
   public cancelAllChanges() {
     this.loadQuizzes();
     this.selectedQuiz = undefined;
+  }
+
+  removeQuestion(q: questionDisplay) {
+    if (this.selectedQuiz) {
+      this.selectedQuiz.questions = this.selectedQuiz.questions.filter(x => x !== q);
+    }
+  }
+
+  addQuestion() {
+    if (this.selectedQuiz) {
+      this.selectedQuiz.questions.push({ name: "New Untitled Question" });
+    }  
   }
 }
