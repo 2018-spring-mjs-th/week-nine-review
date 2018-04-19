@@ -24,7 +24,7 @@ type selectedQuestionType = questionDisplay | undefined;
 })
 export class AppComponent {
 
-  title = 'week-nine-review';
+  title = 'Quiz Editor';
 
   color = "silver";
 
