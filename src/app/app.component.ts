@@ -3,7 +3,9 @@ import { QuizService } from './quiz.service';
 
 interface quizDisplay {
   name: string;
+  //numberQuestions: number;
   questions: questionDisplay[];
+  originalName: string;
 }
 
 interface questionDisplay {
@@ -21,7 +23,7 @@ type selectedQuizType = quizDisplay | undefined;
 })
 export class AppComponent {
 
-  title = 'QUIZ EDITOR';
+  title = 'week-nine-review';
 
   color = "silver";
 
@@ -43,22 +45,26 @@ export class AppComponent {
   quizzes: quizDisplay[] = [];
 
   ngOnInit() {
-    console.log("Before Promise!!!");
+    
+    //this.quizzes = this.quizSvc.getQuizzes();
+
+    console.log("Before Promise");
+    // This is how to consume (or use) a Promise.
     this.loadQuizzes();
     console.log("After Promise!!!");
-      
+ 
   }
 
   private loadQuizzes() {
-      // This is how to consume (or use) a Promise.
-      this.quizSvc.getQuizzes()
-      .then(data => {
-        console.log("Promise fulfilled!!!");
-        this.quizzes = data.json();
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    this.quizSvc.getQuizzes()
+    .then(data => {
+      this.quizzes = data.json();
+      this.quizzes = this.quizzes.map(x=> ({ ...x, originalName: x.name}));
+      //this.quizzes = this.quizzes.map(x=> ({ name: x.name, originalName: x.name, questions: x.questions }));
+    })
+    .catch(error => {
+      console.log(error);
+    });
   }
 
   selectedQuiz: selectedQuizType = undefined;
@@ -68,7 +74,7 @@ export class AppComponent {
   }
 
   addQuiz() {
-    let newQuiz = { name: "New Untitled Quiz", questions: [] };
+    let newQuiz = { name: "New Untitled Quiz", originalName: "New Untitled Quiz", questions: []};
     this.quizzes.push(newQuiz);
     this.selectedQuiz = newQuiz;
   }
@@ -78,13 +84,23 @@ export class AppComponent {
     try {
       let result = await this.quizSvc.saveQuiz(true);
       console.log(result);
-
-      let result2 = await this.quizSvc.saveQuiz(false);
-      console.log(result2);
     }
 
-    catch(cat) {
-      console.log(cat);
+    catch(error) {
+      console.log(error);
+    }
+  }
+
+  addQuestion() {
+    if(this.selectedQuiz != undefined) {
+      let newQuestion = { name: "New Untitled Question"};
+      this.selectedQuiz.questions.push(newQuestion);
+    } 
+  }
+
+  removeQuestion(questionToDelete: questionDisplay) {
+    if (this.selectedQuiz != undefined) {
+      this.selectedQuiz.questions = this.selectedQuiz.questions.filter(x => x !== questionToDelete);
     }
   }
 
@@ -92,16 +108,10 @@ export class AppComponent {
     this.loadQuizzes();
     this.selectedQuiz = undefined;
   }
-
-  removeQuestion(q: questionDisplay) {
-    if (this.selectedQuiz) {
-      this.selectedQuiz.questions = this.selectedQuiz.questions.filter(x => x !== q);
-    }
-  }
-
-  addQuestion() {
-    if (this.selectedQuiz) {
-      this.selectedQuiz.questions.push({ name: "New Untitled Question" });
-    }  
+  get numberOfEditedQuizzes() {
+    return this.quizzes.filter(x => x.name !== x.originalName).length;
   }
 }
+
+
+// filter.reduce returns arrays
