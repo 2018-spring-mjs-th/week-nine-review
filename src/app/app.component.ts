@@ -3,11 +3,10 @@ import { QuizService } from './quiz.service';
 
 interface quizDisplay {
   name: string;
-<<<<<<< HEAD
-=======
+  original_name: string;
   numberQuestions: number;
->>>>>>> origin/rbruinsma/week-12-slack-n-tell
   questions: questionDisplay[];
+  original_question_String: string;
 }
 
 interface questionDisplay {
@@ -61,6 +60,12 @@ export class AppComponent {
       .then(data => {
         console.log("Promise fulfilled!!!");
         this.quizzes = data.json();
+        this.quizzes = this.quizzes.map(x => (
+          { ...x, 
+            original_name: x.name,
+            original_question_String: x.questions.map(x => x.name).join("~")
+          }
+        ));
       })
       .catch(error => {
         console.log(error);
@@ -74,11 +79,7 @@ export class AppComponent {
   }
 
   addQuiz() {
-<<<<<<< HEAD
-    let newQuiz = { name: "New Untitled Quiz", questions: [] };
-=======
-    let newQuiz = { name: "New Untitled Quiz", numberQuestions: 0, questions: []};
->>>>>>> origin/rbruinsma/week-12-slack-n-tell
+    let newQuiz = { name: "New Untitled Quiz", original_name: "New Untitled Quiz", numberQuestions: 0, questions: [], original_question_String: ""};
     this.quizzes.push(newQuiz);
     this.selectedQuiz = newQuiz;
   }
@@ -103,18 +104,6 @@ export class AppComponent {
     this.selectedQuiz = undefined;
   }
 
-<<<<<<< HEAD
-  removeQuestion(q: questionDisplay) {
-    if (this.selectedQuiz) {
-      this.selectedQuiz.questions = this.selectedQuiz.questions.filter(x => x !== q);
-    }
-  }
-
-  addQuestion() {
-    if (this.selectedQuiz) {
-      this.selectedQuiz.questions.push({ name: "New Untitled Question" });
-    }  
-=======
   questions : questionDisplay[] = [];
 
   addQuestion() {
@@ -124,10 +113,15 @@ export class AppComponent {
     }
   }
 
+  get numberOfEditedQuizzes() {
+    return this.quizzes.filter(x => 
+      x.name !== x.original_name || x.name === "New Untitled Quiz" || x.original_question_String !== x.questions.map(x => x.name).join("~")
+    ).length;
+  }
+
   removeQuestion(q: questionDisplay) {
     if (this.selectedQuiz) {
       this.selectedQuiz.questions = this.selectedQuiz.questions.filter((question) => question !== q);
     }
->>>>>>> origin/rbruinsma/week-12-slack-n-tell
   }
 }
