@@ -1,7 +1,7 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
   <!-- <h1 [style.background-color]="color" [innerHTML]="stupid"> -->
-  <h1 [style.background-color]="color" class="text-muted changes-detected-animation">
+  <h1 [style.background-color]="color" class="text-muted">
     {{ title }}
   </h1>
 </div>
@@ -30,11 +30,17 @@
       <br>
     <button 
       class="btn btn-sm" 
+      [class.changes-detected-animation]="numberOfEditedQuizzes > 0"
       [class.btn-outline-success]="numberOfEditedQuizzes === 0" 
       [class.btn-success]="numberOfEditedQuizzes > 0" 
       (click)="saveChanges()">SAVE QUIZZES ({{ numberOfEditedQuizzes }})
     </button>
-      <button class="btn btn-link btn-sm text-muted" (click)="cancelAllChanges()">CANCEL</button>
+    <button 
+        class="btn btn-link btn-sm text-muted" 
+        (click)="cancelAllChanges()"
+        [class.changes-detected-animation]="numberOfEditedQuizzes > 0">
+        CANCEL
+    </button>
       <br>
       <br>     
       <div *ngIf="selectedQuiz === undefined">
