@@ -3,9 +3,9 @@ import { QuizService } from './quiz.service';
 
 interface quizDisplay {
   name: string;
-  //numberQuestions: number;
-  questions: questionDisplay[];
   originalName: string;
+  questions: questionDisplay[];
+  originalQuestionsString: string;
 }
 
 interface questionDisplay {
@@ -59,7 +59,10 @@ export class AppComponent {
     this.quizSvc.getQuizzes()
     .then(data => {
       this.quizzes = data.json();
-      this.quizzes = this.quizzes.map(x=> ({ ...x, originalName: x.name}));
+      this.quizzes = this.quizzes.map(x=> ({ ...x
+        , originalName: x.name
+        , originalQuestionsString: x.questions.map(x => x.name).join("~")
+      }));
       //this.quizzes = this.quizzes.map(x=> ({ name: x.name, originalName: x.name, questions: x.questions }));
     })
     .catch(error => {
@@ -74,7 +77,7 @@ export class AppComponent {
   }
 
   addQuiz() {
-    let newQuiz = { name: "New Untitled Quiz", originalName: "New Untitled Quiz", questions: []};
+    let newQuiz = { name: "New Untitled Quiz", originalName: "New Untitled Quiz", questions: [], originalQuestionsString: ""};
     this.quizzes.push(newQuiz);
     this.selectedQuiz = newQuiz;
   }
@@ -109,7 +112,13 @@ export class AppComponent {
     this.selectedQuiz = undefined;
   }
   get numberOfEditedQuizzes() {
-    return this.quizzes.filter(x => x.name !== x.originalName).length;
+    let editedQuizzes = this.quizzes.filter(x => 
+      x.name !== x.originalName
+      || x.originalName === "New Untitled Quiz"
+      || x.originalQuestionsString !== x.questions.map(x => x.name).join("~")
+    );
+
+    return editedQuizzes.length;
   }
 }
 

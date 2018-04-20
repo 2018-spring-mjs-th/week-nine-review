@@ -12,7 +12,7 @@
       <span class="badge badge-success">1</span> SELECT A QUIZ
       <br>
       <br>
-      <button class="btn btn-outline-success btn-sm" (click)="addQuiz()">ADD A NEW QUIZ</button>
+      <button class="btn btn-outline-success btn-sm" (click)="addQuiz()">ADD QUIZ</button>
       <br>
       <br>      
       <ul class="list-group">
@@ -28,8 +28,8 @@
       <span class="badge badge-success">2</span> EDIT THE SELECTED QUIZ
       <br>
       <br>
-      <button class="btn btn-sm" [class.btn-outline-success]="numberOfEditedQuizzes === 0" [class.btn-success]="numberOfEditedQuizzes" (click)="saveChanges()">SAVE ALL CHANGES ({{numberOfEditedQuizzes}})</button>
-      <button class="btn btn-link btn-sm" (click)="cancelAllChanges()">CANCEL ALL CHANGES</button>
+      <button class="btn btn-sm" [class.btn-outline-success]="numberOfEditedQuizzes === 0" [class.btn-success]="numberOfEditedQuizzes" (click)="saveChanges()">SAVE QUIZZES ({{numberOfEditedQuizzes}})</button>
+      <button class="btn btn-link btn-sm text-muted" (click)="cancelAllChanges()">CANCEL</button>
       <br>
       <br>     
       <div *ngIf="selectedQuiz === undefined">
@@ -71,7 +71,7 @@
                       <input type="text" class="form-control" [(ngModel)]="question.name">
                   </div>
                   <div class="col-sm-4">
-                      <button class="btn btn-link" (click)="removeQuestion(question)">Remove</button>
+                      <button class="btn btn-link" (click)="removeQuestion(question)">REMOVE</button>
                   </div>
                 </div>
                 <br>
