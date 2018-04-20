@@ -1,7 +1,7 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
   <!-- <h1 [style.background-color]="color" [innerHTML]="stupid"> -->
-  <h1 [style.background-color]="color" class="text-muted">
+  <h1 [style.background-color]="color" class="text-muted changes-detected-animation">
     {{ title }}
   </h1>
 </div>
@@ -24,7 +24,7 @@
       </ul>
       <br>
     </div>
-    <div class="col-sm-8">
+    <div class="col-sm-8" [class.details-display-animation]="isDetailsDisplayAnimating">
       <span class="badge badge-success">2</span> EDIT THE SELECTED QUIZ
       <br>
       <br>
