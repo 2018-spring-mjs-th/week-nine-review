@@ -12,7 +12,7 @@
 			<span class="badge badge-success">1</span> SELECT A QUIZ
 
 			<div class="button-actions">
-				<button class="btn btn-outline-success btn-sm add-quiz" (click)="addQuiz()">ADD A NEW QUIZ</button>
+				<button class="btn btn-outline-success btn-sm add-quiz" (click)="addQuiz()">ADD QUIZ</button>
 			</div>
 
 			<div *ngIf="selectedQuiz === undefined">
@@ -30,18 +30,18 @@
 					<li *ngFor="let q of quizzes" [class.active]="q === selectedQuiz" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
 						(click)="makeQuizSelected(q)">
 						{{ q.name }}
-						<span class="badge badge-secondary" [class.bg-danger]="q.numberQuestions == 0">{{ q.numberQuestions }}</span>
+						<span class="badge badge-secondary" [class.bg-danger]="q.questions.length == 0">{{ q.numberQuestions }}</span>
 					</li>
 				</ul>
 			</div>
 		</div>
 
-		<div *ngIf="selectedQuiz !== undefined" class="col-sm-8">
+		<div *ngIf="selectedQuiz !== undefined" class="col-sm-8" [class.edit-details-animate]="selectedQuiz !== undefined">
 			<span class="badge badge-success">2</span> EDIT THE SELECTED QUIZ
 
 			<div class="button-actions">
-				<button class="btn btn-outline-success btn-sm" (click)="saveQuiz(true)">SAVE CHANGES</button>
-				<button class="btn btn-link btn-sm" (click)="cancelChanges(quizzes)">CANCEL CHANGES</button>
+				<button class="btn btn-outline-success btn-sm" [class.changes-detected-animation]="numberOfEditedQuizzes != null" (click)="saveQuiz(true)">SAVE CHANGES <span class="badge badge-danger">{{numberOfEditedQuizzes}}</span></button>
+				<button class="btn btn-link btn-sm" [class.changes-detected-animation]="numberOfEditedQuizzes != null" (click)="cancelChanges(quizzes)">CANCEL</button>
 			</div>
 
 			<div class="quiz-details card">
@@ -73,11 +73,11 @@
 					<div class="questions" *ngIf="selectedQuiz.questions.length > 0">
 						<div class="question" *ngFor="let question of selectedQuiz.questions">
 							<div class="question-name">
-								{{question.name}}
+								<input type="text" class="form-control" [(ngModel)]="question.name" />
 							</div>
 
 							<div class="question-actions">
-								<button type="button" class="btn btn-outline-danger btn-sm" (click)="removeQuestion(question.name)">REMOVE</button>
+								<button type="button" class="btn btn-outline-danger btn-sm" (click)="removeQuestion(question)">REMOVE</button>
 							</div>
 						</div>
 					</div>

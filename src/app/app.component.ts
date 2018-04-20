@@ -1,15 +1,16 @@
 import { Component } from '@angular/core';
+import {trigger, state, style, animate, transition} from '@angular/animations';
 import { QuizService } from './quiz.service';
 
 interface quizDisplay {
   name: string;
   initialName: string;
-  numberQuestions: number;
   questions: quizQuestion[];
 }
 
 interface quizQuestion {
   name: string;
+  initialName: string;
 }
 
 type selectedQuizType = quizDisplay | undefined;
@@ -19,15 +20,19 @@ type selectedQuizType = quizDisplay | undefined;
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'
     , '../../node_modules/bootstrap/dist/css/bootstrap.min.css'
+  ], 
+  animations: [
+
   ]
 })
 export class AppComponent {
-  title = 'week-nine-review';
+  title = 'the Quiz Editor';
   color = "silver";
   isDangerous = true;
   stupid = "Stupid";
   quizzes: quizDisplay[] = [];
   selectedQuiz: selectedQuizType = undefined;
+  previousSelectedQuiz: selectedQuizType = undefined;
   newQuestionName = '';
   
   constructor(private quizSvc: QuizService) {
@@ -47,16 +52,21 @@ export class AppComponent {
     this.quizzes = data as quizDisplay[];
     this.quizzes.map(quiz => {
       quiz.initialName = quiz.name;
+      quiz.questions.map(currentQuestion => {
+        currentQuestion.initialName = currentQuestion.name;
+      });
     });
-    console.log(this.quizzes);
   }
 
   makeQuizSelected(q: quizDisplay) {
+    if(this.selectedQuiz) {
+      this.previousSelectedQuiz = this.selectedQuiz;
+    }
     this.selectedQuiz = q;
   }
 
   addQuiz() {
-    let newQuiz = { name: "New Untitled Quiz", initialName: "New Untitled Quiz", numberQuestions: 0, questions: []};
+    let newQuiz = { name: "New Untitled Quiz", initialName: "New Untitled Quiz", questions: []};
     this.quizzes.push(newQuiz);
     this.selectedQuiz = newQuiz;
   }
@@ -64,26 +74,49 @@ export class AppComponent {
   cancelChanges(modifiedQuizzes: quizDisplay[]) {
     modifiedQuizzes.map(quiz => {
       quiz.name = quiz.initialName;
+      quiz.questions.map(currentQuestion => {
+        currentQuestion.name = currentQuestion.initialName;
+      });
     });
   }
 
   addQuestion(questionName: string) {
     if (this.selectedQuiz && this.newQuestionName != '') {
-      this.selectedQuiz.questions.push({name: questionName});
+      this.selectedQuiz.questions.push({ name: questionName, initialName: questionName});
       this.newQuestionName = '';
     }
   }
 
-  removeQuestion(questionName: string) {
-    if (this.selectedQuiz) {
-      this.selectedQuiz.questions = this.selectedQuiz.questions.filter(question => {
-        return question.name != questionName;
+  removeQuestion(question: quizQuestion) {
+    if(this.selectedQuiz) {
+      this.selectedQuiz.questions = this.selectedQuiz.questions.filter(currentQuestion => {
+        return currentQuestion != question;
       });
     }
   }
   
   async saveQuiz() {
     let result = await this.quizSvc.saveQuiz(true);
-    console.log(result);
+  }
+
+  get numberOfEditedQuizzes() {
+    if(this.selectedQuiz) {
+      let numberChanges = 0;
+      numberChanges = this.selectedQuiz.questions.filter(currentQuestion => {
+        return currentQuestion.name != currentQuestion.initialName;
+      }).length;
+
+      if(this.selectedQuiz.initialName != this.selectedQuiz.name) {
+        numberChanges++;
+      }
+
+      if(numberChanges == 0) {
+        return null;
+      } else {
+        return numberChanges;
+      }
+    } else {
+      return null;
+    }
   }
 }
