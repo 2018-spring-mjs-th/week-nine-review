@@ -22,7 +22,7 @@ type selectedQuizType = quizDisplay | undefined;
   ]
 })
 export class AppComponent {
-
+  
   title = 'QUIZ EDITOR';
 
   color = "silver";
@@ -40,6 +40,7 @@ export class AppComponent {
   // TS automatic properties!!!
   constructor(private quizSvc: QuizService) {
     //this.quizService = quizSvc;
+    //this.isChangesDetectedAnimating = false;
   }
 
   quizzes: quizDisplay[] = [];
@@ -48,8 +49,15 @@ export class AppComponent {
     console.log("Before Promise!!!");
     this.loadQuizzes();
     console.log("After Promise!!!");
-      
+    //this.isChangesDetectedAnimating = false;
   }
+
+  // ngAfterViewInit() {
+  //   setTimeout(() => {
+  //     this.isChangesDetectedAnimating = false;
+  //   }, 500);
+    
+  // }
 
   private loadQuizzes() {
       // This is how to consume (or use) a Promise.
@@ -115,16 +123,30 @@ export class AppComponent {
   }
 
   get numberOfEditedQuizzes() {
-    let editedQuizzes = this.quizzes.filter(x => 
+    let numberOfEditedQuizzes1 = this.quizzes.filter(x => 
       x.name !== x.originalName
       || x.originalName === "New Untitled Quiz"
       || x.originalQuestionsString !== x.questions.map(x => x.name).join("~")
-    );
+    )
+    .length;
 
-    return editedQuizzes.length;
+    return numberOfEditedQuizzes1;
   }
 
-  isDetailsDisplayAnimating = false;
+  get isChangesDetectedAnimating() {
+    let numberOfEditedQuizzes1 = this.quizzes.filter(x => 
+      x.name !== x.originalName
+      || x.originalName === "New Untitled Quiz"
+      || x.originalQuestionsString !== x.questions.map(x => x.name).join("~")
+    )
+    .length;
+    let x = numberOfEditedQuizzes1 > this.previousNumberOfEditedQuizzes;
+    this.previousNumberOfEditedQuizzes = numberOfEditedQuizzes1
+    return x;
+  }
+
+  isDetailsDisplayAnimating: boolean = false;
+  previousNumberOfEditedQuizzes: number = 0;
 
   private animateDetailsDisplay() {
     this.isDetailsDisplayAnimating = true;
