@@ -28,14 +28,15 @@
       <span class="badge badge-success">2</span> EDIT THE SELECTED QUIZ
       <br>
       <br>
-    <button 
-      class="btn btn-sm" 
-      [class.btn-outline-success]="numberOfEditedQuizzes === 0" 
-      [class.btn-success]="numberOfEditedQuizzes > 0" 
-      (click)="saveChanges()">SAVE QUIZZES ({{ numberOfEditedQuizzes }})
-    </button>
-      <button class="btn btn-link btn-sm text-muted" (click)="cancelAllChanges()">CANCEL</button>
-      <br>
+      <div [class.changes-detected-animation]="isSaveCancelAnimating">
+        <button 
+          class="btn btn-sm" 
+          [class.btn-outline-success]="numberOfEditedQuizzes === 0" 
+          [class.btn-success]="numberOfEditedQuizzes > 0" 
+          (click)="saveChanges()">SAVE QUIZZES ({{ numberOfEditedQuizzes }})
+        </button>
+        <button class="btn btn-link btn-sm text-muted" (click)="cancelAllChanges()">CANCEL</button>
+      </div>
       <br>     
       <div *ngIf="selectedQuiz === undefined">
         <div class="card">

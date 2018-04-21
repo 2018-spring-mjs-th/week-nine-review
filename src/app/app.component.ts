@@ -114,12 +114,16 @@ export class AppComponent {
     }      
   }
 
+  previousEditedQuizzes: number[] = [0];
+
   get numberOfEditedQuizzes() {
     let editedQuizzes = this.quizzes.filter(x => 
       x.name !== x.originalName
       || x.originalName === "New Untitled Quiz"
       || x.originalQuestionsString !== x.questions.map(x => x.name).join("~")
     );
+
+    this.previousEditedQuizzes.push(editedQuizzes.length);
 
     return editedQuizzes.length;
   }
@@ -130,4 +134,29 @@ export class AppComponent {
     this.isDetailsDisplayAnimating = true;
     setTimeout(x => this.isDetailsDisplayAnimating = false, 500);
   }
+
+  //isSaveCancelAnimating = false;
+
+  // animateSaveCancel() {
+
+  //   if (!this.isSaveCancelAnimating) {
+  //     this.isSaveCancelAnimating = true;
+  //     setTimeout(x => this.isSaveCancelAnimating = false, 1000);      
+  //   }
+  // }
+
+  get isSaveCancelAnimating(){
+    console.log(this.previousEditedQuizzes);
+    let shouldAnimate = false; //this.numberOfEditedQuizzes > this.previousEditedQuizzes;
+
+    if (shouldAnimate) {
+      //setTimeout(x => this.isSaveCancelAnimating = false, 1000);    
+    }
+
+     return shouldAnimate;
+  }
+
+  // set isSaveCancelAnimating(value) {
+  //   this.isSaveCancelAnimating = value;
+  // }
 }
