@@ -39,14 +39,14 @@ export class AppComponent {
   quizzes: quizDisplay[] = [];
 
   ngOnInit() {
-    
+
     //this.quizzes = this.quizSvc.getQuizzes();
 
 
     console.log("Before Promise!!!");
     this.loadQuizzes();
     console.log("After Promise!!!");
-      
+
   }
 
   private loadQuizzes() {
@@ -68,7 +68,7 @@ export class AppComponent {
   }
 
   addQuiz() {
-    let newQuiz = { name: "New Untitled Quiz", numberQuestions: 0};
+    let newQuiz = { name: "New Untitled Quiz", numberQuestions: 0, questions: []};
     this.quizzes.push(newQuiz);
     this.selectedQuiz = newQuiz;
   }
@@ -92,4 +92,20 @@ export class AppComponent {
     this.loadQuizzes();
     this.selectedQuiz = undefined;
   }
+
+  public removeQuestion(questionToDelete: questionDisplay) {
+
+    if (this.selectedQuiz != undefined) {
+        this.selectedQuiz.questions = this.selectedQuiz.questions.filter(x => x !== questionToDelete);
+    }
+
+  }
+
+  public addQuestion() {
+
+      if(this.selectedQuiz != undefined) {
+          let newQuestion = { name: ""};
+          this.selectedQuiz.questions.push(newQuestion);
+      }
+
 }
