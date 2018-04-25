@@ -76,6 +76,7 @@ export class AppComponent {
   }
 
   addQuiz() {
+    this.animateNewEditDisplay();
     this.animateDetailsDisplay();
     let newQuiz = { name: "New Untitled Quiz", originalName: "New Untitled Quiz", questions: [], originalQuestionsString: "" };
     this.quizzes.push(newQuiz);
@@ -103,12 +104,14 @@ export class AppComponent {
   }
 
   removeQuestion(q: questionDisplay) {
+    this.animateNewEditDisplay();
     if (this.selectedQuiz) {
       this.selectedQuiz.questions = this.selectedQuiz.questions.filter(x => x !== q);
     }
   }
 
   addQuestion() {
+    this.animateNewEditDisplay();
     if (this.selectedQuiz) {
       this.selectedQuiz.questions.push({ name: "New Untitled Question" });
     }      
@@ -120,14 +123,20 @@ export class AppComponent {
       || x.originalName === "New Untitled Quiz"
       || x.originalQuestionsString !== x.questions.map(x => x.name).join("~")
     );
-
     return editedQuizzes.length;
   }
+
+  isThereEditedQuizzes = false;
 
   isDetailsDisplayAnimating = false;
 
   private animateDetailsDisplay() {
     this.isDetailsDisplayAnimating = true;
     setTimeout(x => this.isDetailsDisplayAnimating = false, 500);
+  }
+
+    private animateNewEditDisplay() {
+    this.isThereEditedQuizzes = true;
+    setTimeout(x => this.isThereEditedQuizzes = false, 500);
   }
 }
