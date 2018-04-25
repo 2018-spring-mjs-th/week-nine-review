@@ -1,7 +1,7 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
   <!-- <h1 [style.background-color]="color" [innerHTML]="stupid"> -->
-  <h1 [style.background-color]="color" class="text-muted">
+  <h1 [style.background-color]="color" class="text-muted changes-detected-animation">
     {{ title }}
   </h1>
 </div>
@@ -24,11 +24,16 @@
       </ul>
       <br>
     </div>
-    <div class="col-sm-8">
+    <div class="col-sm-8" [class.details-display-animation]="isDetailsDisplayAnimating">
       <span class="badge badge-success">2</span> EDIT THE SELECTED QUIZ
       <br>
       <br>
-      <button class="btn btn-outline-success btn-sm" (click)="saveChanges()">SAVE QUIZZES ({{numberOfEditedQuizzes}})</button>
+    <button 
+      class="btn btn-sm" 
+      [class.btn-outline-success]="numberOfEditedQuizzes === 0" 
+      [class.btn-success]="numberOfEditedQuizzes > 0" 
+      (click)="saveChanges()">SAVE QUIZZES ({{ numberOfEditedQuizzes }})
+    </button>
       <button class="btn btn-link btn-sm text-muted" (click)="cancelAllChanges()">CANCEL</button>
       <br>
       <br>     
@@ -68,7 +73,7 @@
                     <input type="text" class="form-control" [(ngModel)]="q.name" />
                   </div>  
                   <div class="col-sm-4">
-                    <button class="btn btn-link btn-sm" (click)=removeQuestion(q)>REMOVE</button>
+                      <button class="btn btn-link" (click)="removeQuestion(question)">REMOVE</button>
                   </div>
                 </div>
                 <br /><br />

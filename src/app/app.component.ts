@@ -3,10 +3,9 @@ import { QuizService } from './quiz.service';
 
 interface quizDisplay {
   name: string;
-  original_name: string;
-  numberQuestions: number;
+  originalName: string;
   questions: questionDisplay[];
-  original_question_String: string;
+  originalQuestionsString: string;
 }
 
 interface questionDisplay {
@@ -60,12 +59,11 @@ export class AppComponent {
       .then(data => {
         console.log("Promise fulfilled!!!");
         this.quizzes = data.json();
-        this.quizzes = this.quizzes.map(x => (
-          { ...x, 
-            original_name: x.name,
-            original_question_String: x.questions.map(x => x.name).join("~")
-          }
-        ));
+        this.quizzes = this.quizzes.map(x=> ({ ...x
+          , originalName: x.name 
+          , originalQuestionsString: x.questions.map(x => x.name).join("~")
+        }));
+        //this.quizzes = this.quizzes.map(x=> ({ name: x.name, originalName: x.name, questions: x.questions }));
       })
       .catch(error => {
         console.log(error);
@@ -75,11 +73,13 @@ export class AppComponent {
   selectedQuiz: selectedQuizType = undefined;
 
   makeQuizSelected(q: quizDisplay) {
+    this.animateDetailsDisplay();
     this.selectedQuiz = q;
   }
 
   addQuiz() {
-    let newQuiz = { name: "New Untitled Quiz", original_name: "New Untitled Quiz", numberQuestions: 0, questions: [], original_question_String: ""};
+    this.animateDetailsDisplay();
+    let newQuiz = { name: "New Untitled Quiz", originalName: "New Untitled Quiz", questions: [], originalQuestionsString: "" };
     this.quizzes.push(newQuiz);
     this.selectedQuiz = newQuiz;
   }
@@ -121,7 +121,24 @@ export class AppComponent {
 
   removeQuestion(q: questionDisplay) {
     if (this.selectedQuiz) {
-      this.selectedQuiz.questions = this.selectedQuiz.questions.filter((question) => question !== q);
-    }
+      this.selectedQuiz.questions.push({ name: "New Untitled Question" });
+    }      
+  }
+
+  get numberOfEditedQuizzes() {
+    let editedQuizzes = this.quizzes.filter(x => 
+      x.name !== x.originalName
+      || x.originalName === "New Untitled Quiz"
+      || x.originalQuestionsString !== x.questions.map(x => x.name).join("~")
+    );
+
+    return editedQuizzes.length;
+  }
+
+  isDetailsDisplayAnimating = false;
+
+  private animateDetailsDisplay() {
+    this.isDetailsDisplayAnimating = true;
+    setTimeout(x => this.isDetailsDisplayAnimating = false, 500);
   }
 }
