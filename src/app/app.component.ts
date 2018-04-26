@@ -29,6 +29,8 @@ export class AppComponent {
 
   isDangerous = true;
 
+  public errorLoadingQuizzes = false;
+
   public toggleDanger() {
     this.isDangerous = !this.isDangerous;
   }
@@ -48,7 +50,7 @@ export class AppComponent {
     console.log("Before Promise!!!");
     this.loadQuizzes();
     console.log("After Promise!!!");
-      
+
   }
 
   private loadQuizzes() {
@@ -58,12 +60,13 @@ export class AppComponent {
         console.log("Promise fulfilled!!!");
         this.quizzes = data.json();
         this.quizzes = this.quizzes.map(x=> ({ ...x
-          , originalName: x.name 
+          , originalName: x.name
           , originalQuestionsString: x.questions.map(x => x.name).join("~")
         }));
         //this.quizzes = this.quizzes.map(x=> ({ name: x.name, originalName: x.name, questions: x.questions }));
       })
       .catch(error => {
+        this.errorLoadingQuizzes = true;
         console.log(error);
       });
   }
@@ -111,11 +114,11 @@ export class AppComponent {
   addQuestion() {
     if (this.selectedQuiz) {
       this.selectedQuiz.questions.push({ name: "New Untitled Question" });
-    }      
+    }
   }
 
   get numberOfEditedQuizzes() {
-    let editedQuizzes = this.quizzes.filter(x => 
+    let editedQuizzes = this.quizzes.filter(x =>
       x.name !== x.originalName
       || x.originalName === "New Untitled Quiz"
       || x.originalQuestionsString !== x.questions.map(x => x.name).join("~")

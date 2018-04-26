@@ -13,7 +13,7 @@ export class QuizService {
   }
 
   public saveQuiz(succeed: boolean): Promise<string> {
-     
+
     return new Promise((resolve, reject) => {
 
       // Run some code and either resolve it (success) or reject it (failure).
