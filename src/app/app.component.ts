@@ -51,6 +51,8 @@ export class AppComponent {
       
   }
 
+  errorLoadingQuizzes = false;
+
   private loadQuizzes() {
       // This is how to consume (or use) a Promise.
       this.quizSvc.getQuizzes()
@@ -65,6 +67,7 @@ export class AppComponent {
       })
       .catch(error => {
         console.log(error);
+        this.errorLoadingQuizzes = true;
       });
   }
 
