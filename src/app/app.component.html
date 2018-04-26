@@ -7,6 +7,13 @@
 </div>
 
 <div class="container">
+  <!-- <div class="row">
+    <div class="col-sm-12">
+          <ngb-alert [dismissible]="false">
+              <strong>Warning!</strong> Better check yourself, you're not looking too good.
+          </ngb-alert>
+    </div>
+  </div> -->
   <div class="row">
     <div class="col-sm-4">
       <span class="badge badge-success">1</span> SELECT A QUIZ
@@ -32,6 +39,7 @@
       class="btn btn-sm" 
       [class.btn-outline-success]="numberOfEditedQuizzes === 0" 
       [class.btn-success]="numberOfEditedQuizzes > 0" 
+      [class.changes-detected-animation]="numberOfEditedQuizzes >"
       (click)="saveChanges()">SAVE QUIZZES ({{ numberOfEditedQuizzes }})
     </button>
       <button class="btn btn-link btn-sm text-muted" (click)="cancelAllChanges()">CANCEL</button>
