@@ -32,6 +32,7 @@
       class="btn btn-sm" 
       [class.btn-outline-success]="numberOfEditedQuizzes === 0" 
       [class.btn-success]="numberOfEditedQuizzes > 0" 
+      [class.changes-detected-animation]="numberOfEditedQuizzes > 0"
       (click)="saveChanges()">SAVE QUIZZES ({{ numberOfEditedQuizzes }})
     </button>
       <button class="btn btn-link btn-sm text-muted" (click)="cancelAllChanges()">CANCEL</button>
