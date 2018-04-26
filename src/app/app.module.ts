@@ -6,7 +6,7 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { QuizService } from './quiz.service';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -17,6 +17,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     BrowserModule
     , FormsModule
     , HttpModule
+    , NgbModule.forRoot()
   ],
   providers: [ QuizService ],
   bootstrap: [AppComponent]
