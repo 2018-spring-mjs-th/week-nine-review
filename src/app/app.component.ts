@@ -65,6 +65,7 @@ export class AppComponent {
       })
       .catch(error => {
         console.log(error);
+        this.errorLoadingQuizzes = true;
       });
   }
 
@@ -125,6 +126,8 @@ export class AppComponent {
   }
 
   isDetailsDisplayAnimating = false;
+
+  public errorLoadingQuizzes = false;
 
   private animateDetailsDisplay() {
     this.isDetailsDisplayAnimating = true;

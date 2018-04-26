@@ -7,7 +7,12 @@
 </div>
 
 <div class="container">
-  <div class="row">
+  <div class="row" *ngIf="errorLoadingQuizzes">
+    <div class="col-sm-12">
+      <ngb-alert [dismissible]="false" type="danger"><strong>Error:</strong> Could not load quizzes, please refresh the page.</ngb-alert>
+    </div>
+  </div>
+  <div class="row" *ngIf="!errorLoadingQuizzes">
     <div class="col-sm-4">
       <span class="badge badge-success">1</span> SELECT A QUIZ
       <br>
