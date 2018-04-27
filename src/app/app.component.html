@@ -60,7 +60,21 @@
                 <label>
                   NAME
                   <input type="text" class="form-control" [(ngModel)]="selectedQuiz.name" />
+                  
                 </label>
+                <br>
+                <br>
+                <label>DYNAMIC DROPDOWN
+                  <div ngbDropdown>
+                    <button type="button" class="btn" id="dropdownPractice" ngbDropdownToggle>Toughest Question</button>
+                    <div ngbDropdownMenu aria-labelledby="dropdownPractice">
+                      
+                      <button *ngFor="let question of selectedQuiz.questions" class="dropdown-item">{{ question.name }}</button>
+                    </div>
+
+                  </div>
+                </label>
+
               </div>
             </div>
           </div>
