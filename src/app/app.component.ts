@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { QuizService } from './quiz.service';
 
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+
 interface quizDisplay {
   name: string;
   originalName: string;
@@ -22,7 +24,7 @@ type selectedQuizType = quizDisplay | undefined;
   ]
 })
 export class AppComponent {
-
+  closeResult: string;
   title = 'QUIZ EDITOR';
 
   color = "silver";
@@ -38,7 +40,7 @@ export class AppComponent {
   //quizService: QuizService;
 
   // TS automatic properties!!!
-  constructor(private quizSvc: QuizService) {
+  constructor(private quizSvc: QuizService, private modalService: NgbModal) {
     //this.quizService = quizSvc;
   }
 
@@ -133,4 +135,24 @@ export class AppComponent {
     this.isDetailsDisplayAnimating = true;
     setTimeout(x => this.isDetailsDisplayAnimating = false, 500);
   }
+
+  open(content) {
+    this.modalService.open(content).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return  `with: ${reason}`;
+    }
+  }
+
+
 }
