@@ -62,6 +62,17 @@
                   <input type="text" class="form-control" [(ngModel)]="selectedQuiz.name" />
                 </label>
               </div>
+              <div class="form-group">
+                <label>
+                  DYNAMIC DROPDOWN
+                  <div ngbDropdown class="d-block">
+                    <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>TOUGHEST QUESTION</button>
+                    <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                      <button class="dropdown-item" *ngFor="let question of selectedQuiz.questions">{{question.name}}</button>
+                    </div>              
+                  </div>
+                </label>
+              </div>
             </div>
           </div>
           <br>
