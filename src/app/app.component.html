@@ -12,6 +12,28 @@
       <ngb-alert type="danger" [dismissible]="false">Couldn't load quizzes, please try to refresh <strong>: - (</strong></ngb-alert>
     </div>
   </div>
+  <div class="row">
+      <ng-template #content let-c="close" let-d="dismiss">
+          <div class="modal-header">
+            <h4 class="modal-title">Modal title</h4>
+            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Check out this awesome modal!&hellip;</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
+          </div>
+        </ng-template>
+        
+        <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo modal</button>
+        
+        <hr>
+        
+        <pre>{{closeResult}}</pre>
+  </div>
   <div class="row" *ngIf="!errorLoadingQuizzes">
     <div class="col-sm-4">
       <span class="badge badge-success">1</span> SELECT A QUIZ
