@@ -14,7 +14,6 @@ import { QuizService } from './quiz.service';
 @NgModule({
   declarations: [
     AppComponent,
-    ModalComponent
   ],
   imports: [
     BrowserModule

@@ -1,6 +1,6 @@
 
 
-<div class="container">
+<div class="container py-4">
 <div class="row">
    <div class="col-lg-12">
     <h1 [style.background-color]="color" class="text-muted changes-detected-animation text-center py-2 mb-5">
@@ -8,23 +8,6 @@
     </h1>
     </div>
 </div>
-
-
-      <ng-template #content let-c="close" let-d="dismiss">
-        <div class="modal-header">
-          <h4 class="modal-title">Whatcha Talkin' About Willis?</h4>
-        </div>
-        <div class="modal-body">
-            <img src="../images/iu.jpeg" alt="Whatcha Talkin' Bout Willis?"/>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-light" (click)="c('Close click')">Close</button>
-        </div>
-      </ng-template>
- 
-  <button class="btn btn-outline-primary mb-1" (click)="openVerticallyCentered(content)">Don't Click Me!!!</button>
-
-
 
   <div class="row mt-5">
     <div class="col-sm-4">
