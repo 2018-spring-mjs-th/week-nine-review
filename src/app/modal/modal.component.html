@@ -1,0 +1,16 @@
+<ng-template #modal let-c="close" let-d="dismiss">
+
+  <div class="modal-header">
+    <h4 class="modal-title">I TOLD YOU NOT TO CLICK</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">Never Mind You Never Listen</div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-dark btn-lg" (click)="c('Close click')">Close</button>
+  </div>
+
+</ng-template>
+
+<button class="btn btn-warning btn-lg" (click)="open(modal)">Don't Click Me!!!</button>

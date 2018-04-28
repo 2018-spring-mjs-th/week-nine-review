@@ -8,12 +8,14 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { QuizService } from './quiz.service';
+import { ModalComponent } from './modal/modal.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    ModalComponent,
   ],
   imports: [
     BrowserModule
