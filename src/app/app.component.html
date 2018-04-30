@@ -19,7 +19,7 @@
       <br>
       <button class="btn btn-outline-success btn-sm" (click)="addQuiz()">ADD QUIZ</button>
       <br>
-      <br>      
+      <br>
       <ul class="list-group">
         <li *ngFor="let q of quizzes" [class.active]="q === selectedQuiz" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
           (click)="makeQuizSelected(q)">
@@ -33,15 +33,15 @@
       <span class="badge badge-success">2</span> EDIT THE SELECTED QUIZ
       <br>
       <br>
-    <button 
-      class="btn btn-sm" 
-      [class.btn-outline-success]="numberOfEditedQuizzes === 0" 
-      [class.btn-success]="numberOfEditedQuizzes > 0" 
+    <button
+      class="btn btn-sm"
+      [class.btn-outline-success]="numberOfEditedQuizzes === 0"
+      [class.btn-success]="numberOfEditedQuizzes > 0"
       (click)="saveChanges()">SAVE QUIZZES ({{ numberOfEditedQuizzes }})
     </button>
       <button class="btn btn-link btn-sm text-muted" (click)="cancelAllChanges()">CANCEL</button>
       <br>
-      <br>     
+      <br>
       <div *ngIf="selectedQuiz === undefined">
         <div class="card">
           <div class="card-body text-center text-muted">
@@ -60,6 +60,16 @@
                 <label>
                   NAME
                   <input type="text" class="form-control" [(ngModel)]="selectedQuiz.name" />
+                </label>
+                <br /><br />
+                <label>
+                  DYNAMIC DROPDOWN
+                  <div ngbDropdown class="d-block">
+                      <button class="btn btn-outline-dark" id="dropdown" ngbDropdownToggle>Toughest Question</button>
+                      <div ngbDropdownMenu aria-labelledby="dropdown">
+                        <button *ngFor="let q of selectedQuiz.questions" class="dropdown-item">{{ q.name }}</button>
+                      </div>
+                  </div>
                 </label>
               </div>
             </div>
@@ -88,8 +98,8 @@
                 <br>
               </div>
             </div>
-          </div>          
-      </div>        
+          </div>
+      </div>
     </div>
   </div>
 </div>
