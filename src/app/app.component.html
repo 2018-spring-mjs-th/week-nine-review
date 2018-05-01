@@ -33,9 +33,15 @@
       [class.changes-detected-animation]="isThereEditedQuizzes"
       [class.btn-outline-success]="numberOfEditedQuizzes === 0" 
       [class.btn-success]="numberOfEditedQuizzes > 0" 
-      (click)="saveChanges()">SAVE QUIZZES ({{ numberOfEditedQuizzes }})
+      (click)="saveChanges()">
+      SAVE QUIZZES ({{ numberOfEditedQuizzes }})
     </button>
-      <button class="btn btn-link btn-sm text-muted" (click)="cancelAllChanges()">CANCEL</button>
+      <button 
+        class="btn btn-link btn-sm text-muted"
+        [class.changes-detected-animation]="isThereEditedQuizzes" 
+        (click)="cancelAllChanges()">
+        CANCEL
+      </button>
       <br>
       <br>     
       <div *ngIf="selectedQuiz === undefined">
