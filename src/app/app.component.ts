@@ -25,7 +25,7 @@ export class AppComponent {
 
   title = 'QUIZ EDITOR';
 
-  color = "silver";
+  color = 'silver';
 
   isDangerous = true;
 
@@ -33,7 +33,7 @@ export class AppComponent {
     this.isDangerous = !this.isDangerous;
   }
 
-  stupid = "Stupid";
+  stupid = 'Stupid';
 
   //quizService: QuizService;
 
@@ -45,23 +45,23 @@ export class AppComponent {
   quizzes: quizDisplay[] = [];
 
   ngOnInit() {
-    console.log("Before Promise!!!");
+    console.log('Before Promise!!!');
     this.loadQuizzes();
-    console.log("After Promise!!!");
-      
+    console.log('After Promise!!!');
   }
 
   private loadQuizzes() {
-      // This is how to consume (or use) a Promise.
-      this.quizSvc.getQuizzes()
+    // This is how to consume (or use) a Promise.
+    this.quizSvc.getQuizzes()
       .then(data => {
-        console.log("Promise fulfilled!!!");
+        console.log('Promise fulfilled!!!');
         this.quizzes = data.json();
-        this.quizzes = this.quizzes.map(x=> ({ ...x
-          , originalName: x.name 
-          , originalQuestionsString: x.questions.map(x => x.name).join("~")
+        this.quizzes = this.quizzes.map(x => ({
+          ...x
+          , originalName: x.name
+          , originalQuestionsString: x.questions.map(x => x.name).join('~')
         }));
-        //this.quizzes = this.quizzes.map(x=> ({ name: x.name, originalName: x.name, questions: x.questions }));
+        // this.quizzes = this.quizzes.map(x=> ({ name: x.name, originalName: x.name, questions: x.questions }));
       })
       .catch(error => {
         console.log(error);
@@ -77,7 +77,7 @@ export class AppComponent {
 
   addQuiz() {
     this.animateDetailsDisplay();
-    let newQuiz = { name: "New Untitled Quiz", originalName: "New Untitled Quiz", questions: [], originalQuestionsString: "" };
+    let newQuiz = { name: 'New Untitled Quiz', originalName: 'New Untitled Quiz', questions: [], originalQuestionsString: ''};
     this.quizzes.push(newQuiz);
     this.selectedQuiz = newQuiz;
   }
@@ -92,7 +92,7 @@ export class AppComponent {
       console.log(result2);
     }
 
-    catch(cat) {
+    catch (cat) {
       console.log(cat);
     }
   }
@@ -110,15 +110,15 @@ export class AppComponent {
 
   addQuestion() {
     if (this.selectedQuiz) {
-      this.selectedQuiz.questions.push({ name: "New Untitled Question" });
-    }      
+      this.selectedQuiz.questions.push({name: 'New Untitled Question'});
+    }
   }
 
   get numberOfEditedQuizzes() {
-    let editedQuizzes = this.quizzes.filter(x => 
+    let editedQuizzes = this.quizzes.filter(x =>
       x.name !== x.originalName
-      || x.originalName === "New Untitled Quiz"
-      || x.originalQuestionsString !== x.questions.map(x => x.name).join("~")
+      || x.originalName === 'New Untitled Quiz'
+      || x.originalQuestionsString !== x.questions.map(x => x.name).join('~')
     );
 
     return editedQuizzes.length;
