@@ -25,3 +25,21 @@
     animation-duration: 0.75s;
     transform-origin: top left;
 }
+
+
+.joe-is-awesome {
+  animation-duration: 6s;
+  animation-name: slidein;
+}
+
+@keyframes slidein {
+  from {
+    margin-left: 100%;
+    width: 300%; 
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+}
