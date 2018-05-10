@@ -24,13 +24,16 @@
         <li *ngFor="let q of quizzes" [class.active]="q === selectedQuiz" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
           (click)="makeQuizSelected(q)">
           {{ q.name }}
+          
+          
           <span class="badge badge-secondary" [class.bg-danger]="q.questions.length == 0">{{ q.questions.length }}</span>
         </li>
       </ul>
       <br>
     </div>
+   
     <div class="col-sm-8" [class.details-display-animation]="isDetailsDisplayAnimating">
-      <span class="badge badge-success">2</span> EDIT THE SELECTED QUIZ
+    <span class="badge badge-success">2</span> EDIT THE SELECTED QUIZ
       <br>
       <br>
       <button class="btn btn-sm" [class.btn-outline-success]="numberOfEditedQuizzes === 0" [class.btn-success]="numberOfEditedQuizzes > 0"
