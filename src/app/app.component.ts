@@ -89,6 +89,21 @@ export class AppComponent {
     }
   }
 
+  public removeQuestion(q: questionDisplay) {
+    if(this.selectedQuiz){
+      this.selectedQuiz.questions = this.selectedQuiz.questions.filter(x => x !== q);
+    }
+  }
+
+  public addQuestion(){
+    if(this.selectedQuiz){
+      this.selectedQuiz.questions.push({name:"NEW UNTITLED QUESTION"});
+    }
+
+  }
+
+
+
   public cancelAllChanges() {
     this.loadQuizzes();
     this.selectedQuiz = undefined;
