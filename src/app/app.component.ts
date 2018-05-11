@@ -3,7 +3,10 @@ import { QuizService } from './quiz.service';
 
 interface quizDisplay {
   name: string;
-  numberQuestions: number;
+  questions : questionDisplay[];
+}
+interface questionDisplay{
+  name: string;
 }
 
 type selectedQuizType = quizDisplay | undefined;
@@ -39,9 +42,6 @@ export class AppComponent {
   quizzes: quizDisplay[] = [];
 
   ngOnInit() {
-    
-    //this.quizzes = this.quizSvc.getQuizzes();
-
 
     console.log("Before Promise!!!");
     this.loadQuizzes();
@@ -55,6 +55,7 @@ export class AppComponent {
       .then(data => {
         console.log("Promise fulfilled!!!");
         this.quizzes = data.json();
+        console.log(this.quizzes);
       })
       .catch(error => {
         console.log(error);
@@ -68,7 +69,7 @@ export class AppComponent {
   }
 
   addQuiz() {
-    let newQuiz = { name: "New Untitled Quiz", numberQuestions: 0};
+    let newQuiz = { name: "New Untitled Quiz", numberQuestions: 0, questions: []};
     this.quizzes.push(newQuiz);
     this.selectedQuiz = newQuiz;
   }
